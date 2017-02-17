@@ -1,5 +1,5 @@
 /**
- * Created by Radu on 1/30/2017.
+ * Created by ilya shusterman on 1/30/2017.
  */
 "use strict";
 
@@ -53,7 +53,7 @@ var embeddedMongodb = {
         }
         this.log('Executing: ' + mongodStartCmd);
 
-        let connectionAttempts = 0;
+        var connectionAttempts = 0;
         var self = this;
         function awaitListeningPort() {
 
