@@ -16,20 +16,6 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService: AuthService, public router: Router) { }
 
-  // ngOnInit() {
-  // }
-/////////// past code////
-  // setlogin(){
-  //   this.authService.setLogin();
-  //   // Redirect the user
-  //   let redirect = '/dashboard';
-  //   this.router.navigate([redirect]);
-  // }
-  // setAdminPermission(){
-  //   this.authService.setAdminPermission();
-  // }
-//////////////new code ////
-
   isChecked:boolean = false;
   errorMessage:string ='Login Failed';
   loginApproved: boolean = false;
@@ -61,24 +47,13 @@ export class LoginComponent implements OnInit {
       })
       .catch(function (error) {
        let message = error.response.data;
+       if (message === undefined ) {
+         message = 'Server not responding';
+       }
        this.setErrorMessage(message);
       });
-    //TODO axios code revoke http request to backend check if user authenticated
-    if(this.checkUsers(user)){
-      let logged = JSON.stringify(true);
-      localStorage.setItem("isLoggedIn", logged);
-    }
-
   }
 
-  checkUsers(user: User) {
-    let index = 0;
-    for (index = 0; index < this.users.length; ++index) {
-      console.log(this.users[index]);
-      if(user.email==this.users[index].email&& user.password==this.users[index].password){return true;}
-    }
-    return false;
-  }
 
   setLogin(){
     this.isLoggedIn = true;
@@ -89,35 +64,24 @@ export class LoginComponent implements OnInit {
   setChecked(){
     this.isChecked= true;
   }
-  setErrorMessage(message :string){
-    this.errorMessage=message;
+  setErrorMessage(message :any){
+    //this.errorMessage=message;
   }
 
-
-  getUsers(): void {
-   // this.loginService.getUsers().then(users => this.users = users);
-  }
   ngOnInit(): void {
-    this.getUsers();
-    let newUser = localStorage.getItem("user");
-    let newIsLoggedIn = localStorage.getItem("isLoggedIn");
-    if(newUser){
-      this.user=JSON.parse(newUser);
-    }
-    console.log(newIsLoggedIn);
-    if(newIsLoggedIn){
-      this.isLoggedIn =JSON.parse(newIsLoggedIn);
-      console.log("User Checke"+this.isLoggedIn);
-    }
+    // let newUser = localStorage.getItem("user");
+    // let newIsLoggedIn = localStorage.getItem("isLoggedIn");
+    // if(newUser){
+    //   this.user=JSON.parse(newUser);
+    // }
+    // console.log(newIsLoggedIn);
+    // if(newIsLoggedIn){
+    //   this.isLoggedIn =JSON.parse(newIsLoggedIn);
+    //   console.log("User Checke"+this.isLoggedIn);
+    // }
+    //TODO checks if the user session is already logged in
+  }
 
-  }
-  getErrorMessage(message) : void{
-    //TODO give div with error message
-  }
-//   get diagnostic() { return this.user.toString(); }
-//
-//
-// }
 
 
 }
