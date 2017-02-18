@@ -3,7 +3,6 @@ import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {User} from './User';
 import axios from 'axios';
-import { LoginService } from './login.service';
 import { Http, Headers, Response } from '@angular/http';
 import {forEach} from "@angular/router/src/utils/collection";
 
@@ -15,7 +14,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, public authService: AuthService, public router: Router) { }
+  constructor(public authService: AuthService, public router: Router) { }
 
   // ngOnInit() {
   // }
