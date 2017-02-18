@@ -4,10 +4,10 @@
   <!--<button (click)="setlogin()">Press to login</button>-->
   <!--<button (click)="setAdminPermission()">Press to give Admin permission</button>-->
 <!--</p>-->
-
+<body>
 <div *ngIf="!isLoggedIn">
   <div class="login">
-    <img class="profile-img" src="../app/src/logo.png" alt="logo" >
+    <img class="profile-img" src="../../assets/logo.jpg" alt="logo" >
     <h1 class="text-center">{{title}}</h1>
     <div *ngIf="errorFlag" class="alert alert-danger">{{errorMessage}}</div>
     <form (ngSubmit)="login($event,user)"  #LoginForm="ngForm">
@@ -36,7 +36,8 @@
       </div>
       <br>
       <button type="submit" class="btn btn-block" (click)="setlogin()" [disabled]="!LoginForm.form.valid">Log In</button>
+
     </form>
   </div>
 </div>
-
+</body>

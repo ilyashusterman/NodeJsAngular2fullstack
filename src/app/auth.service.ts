@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
+import {User} from "./login/User";
 
 @Injectable()
 export class AuthService {
@@ -15,10 +16,11 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  public setLogin(){
-    Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+  public setLogin(user :User){
+   // Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
     this.isLoggedIn = true;
     localStorage.setItem("logged",JSON.stringify(this.isLoggedIn));
+    localStorage.setItem("user",JSON.stringify(user));
     let logged = localStorage.getItem("logged");
     console.log("setLogin logged="+logged);
   }
@@ -27,6 +29,7 @@ export class AuthService {
     let logged = localStorage.getItem("logged");
     console.log("login logged="+logged);
     return JSON.parse(logged);
+
   }
 
   logout(): void {
