@@ -44,6 +44,18 @@ export class AuthService {
     console.log("adminPermission admin="+adminLogged );
     return JSON.parse(adminLogged);
   }
+  public setScriptsPermission(){
+    Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+    this.isLoggedIn = true;
+    localStorage.setItem("scripts",JSON.stringify(true));
+    let logged = localStorage.getItem("scripts");
+    console.log("setScriptsPermission scripts="+logged);
+  }
+  public scriptsPermission() {
+    let scriptsLogged = localStorage.getItem("scripts");
+    console.log("scriptsPermission script="+scriptsLogged );
+    return JSON.parse(scriptsLogged);
+  }
 
   setLogout() {
     //TODO sends a backend request to logout from session

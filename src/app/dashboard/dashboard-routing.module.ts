@@ -7,6 +7,7 @@ import {DashboardhomeComponent} from "../dashboardhome/dashboardhome.component";
 import {DashboardListComponent} from "../dashboard-list/dashboard-list.component";
 import {AdminGuard} from "../admin/admin-guard.service";
 import {AuthService} from "../auth.service";
+import {ScriptsGuard} from "../scripts/scripts-guard.service";
 
 const dashboardRoutes: Routes = [
   {
@@ -24,7 +25,8 @@ const dashboardRoutes: Routes = [
           },
           {
             path: 'scripts',
-            component: ScriptsComponent
+            component: ScriptsComponent,
+            canActivate: [ScriptsGuard]
           },
           {
             path: '',
@@ -44,7 +46,8 @@ const dashboardRoutes: Routes = [
     RouterModule
   ],
   providers: [
-    AdminGuard
+    AdminGuard,
+    ScriptsGuard
   ]
 })
 export class DashboardRoutingModule { }

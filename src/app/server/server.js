@@ -37,14 +37,6 @@ db.once('open', function() {
         });
     });
 
-    // app.get('/cats', function(req, res) {
-    //     Cat.find({}, function(err, docs) {
-    //         if(err) return console.error(err);
-    //         res.json(docs);
-    //     });
-    // });
-
-
     // count all
     app.get('/users/count', function(req, res) {
         User.count(function(err, count) {
