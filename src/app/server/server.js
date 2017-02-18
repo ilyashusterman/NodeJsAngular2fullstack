@@ -5,7 +5,7 @@ var express = require('express');
 var path = require('path');
 var morgan = require('morgan'); // logger
 var bodyParser = require('body-parser');
-
+var session = require('express-session');
 var app = express();
 app.set('port', (process.env.PORT || 3000));
 
@@ -15,6 +15,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(morgan('dev'));
+app.use(session({
+  secret: 'keyboard cat',
+  user: '',
+  maxAge: 3600000,
+  saveUninitialized: true
+}));
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/test');
@@ -49,16 +55,34 @@ db.once('open', function() {
     app.post('/login', function(req, res) {
         var user = new User(req.body);
         console.log(user);
-        //TODO Query the user object
-      // User.find({ 'username': obj.email }, {'password': obj.password }, function(err, obj) {
-      //       if(err) return res.status(500).json(err.message);
-      //       res.status(200).json(obj);
-      //   });
+        console.log('username is '+user.username+' pass '+user.password);
+        User.find({ username: user.username, password: user.password }, function (err, userFound) {
+
+        if (err){
+          console.log('error msg ' +error.message);
+          return res.status(500).json(err);
+        }
+
+        if (userFound) {
+          console.log("User FOUND "+ userFound);
+          var stringUser = JSON.stringify(userFound);
+          // var parsed = JSON.parse(userFound);
+          console.log(' is parsed '+parsed);
+          console.log('user : '+stringUser);
+          var newuser = {id: stringUser._id, username: stringUser.username, permissions: stringUser.permissions };
+          req.session.user = newuser;
+          console.log(req.session.user);
+         return res.status(200).json('User logged in successfully');
+        } else {
+          console.log("User NOT FOUND");
+          return res.status(401).json('User not authorized');
+        }
+      });
     });
 
   app.post('/users', function(req, res) {
     var obj = new User(req.body);
-    obj.find(function(err, obj) {
+    obj.save(function(err, obj) {
       if(err) return res.status(500).json(err.message);
       res.status(200).json(obj);
     });

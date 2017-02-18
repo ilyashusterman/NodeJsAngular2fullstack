@@ -47,10 +47,8 @@ export class LoginComponent implements OnInit {
       })
       .catch(function (error) {
        let message = error.response.data;
-       if (message === undefined ) {
-         message = 'Server not responding';
-       }
-       this.setErrorMessage(message);
+        console.log(message);
+        // this.setErrorMessage(message.value+'');
       });
   }
 
@@ -64,8 +62,8 @@ export class LoginComponent implements OnInit {
   setChecked(){
     this.isChecked= true;
   }
-  setErrorMessage(message :any){
-    //this.errorMessage=message;
+  setErrorMessage(message : String){
+    console.log(message);
   }
 
   ngOnInit(): void {
