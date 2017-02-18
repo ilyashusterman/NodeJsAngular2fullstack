@@ -46,18 +46,28 @@ db.once('open', function() {
     });
 
     // create
-    app.post('/user', function(req, res) {
-        var obj = new User(req.body);
-        obj.save(function(err, obj) {
-            if(err) return res.status(500).json(err.message);
-            res.status(200).json(obj);
-        });
+    app.post('/login', function(req, res) {
+        var user = new User(req.body);
+        console.log(user);
+        //TODO Query the user object
+      // User.find({ 'username': obj.email }, {'password': obj.password }, function(err, obj) {
+      //       if(err) return res.status(500).json(err.message);
+      //       res.status(200).json(obj);
+      //   });
     });
+
+  app.post('/users', function(req, res) {
+    var obj = new User(req.body);
+    obj.find(function(err, obj) {
+      if(err) return res.status(500).json(err.message);
+      res.status(200).json(obj);
+    });
+  });
 
     // find by id
     app.get('/user/:id', function(req, res) {
         User.findOne({_id: req.params.id}, function(err, obj) {
-            if(err) return console.error(err);
+            if(err) return res.status(500).json(err.message);
             res.json(obj);
         })
     });
