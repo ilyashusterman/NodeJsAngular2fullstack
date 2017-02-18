@@ -49,7 +49,7 @@ db.once('open', function() {
     app.post('/user', function(req, res) {
         var obj = new User(req.body);
         obj.save(function(err, obj) {
-            if(err) return console.error(err);
+            if(err) return res.status(500).json(err.message);
             res.status(200).json(obj);
         });
     });
