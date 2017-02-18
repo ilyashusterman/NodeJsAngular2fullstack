@@ -6,6 +6,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prod": "ng serve --proxy-config proxy.conf.json --prod --open",
+    "be": "nodemon src/server/app.js",
     "backend": "node ./src/app/server/server.js",
     "lint": "tslint \"src/**/*.ts\" --project src/tsconfig.json --type-check && tslint \"e2e/**/*.ts\" --project e2e/tsconfig.json --type-check",
     "test": "ng test",

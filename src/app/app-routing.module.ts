@@ -8,7 +8,7 @@ import {NotfoundComponent} from "./notfound/notfound.component";
 import {AuthGuard} from "./auth-guard.service";
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent }
+  { path: '', component: LoginComponent }
   ,
   {
     path: 'dashboard',
