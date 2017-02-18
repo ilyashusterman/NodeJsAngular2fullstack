@@ -10,7 +10,7 @@
     <img class="profile-img" src="../../assets/logo.jpg" alt="logo" >
     <h1 class="text-center">{{title}}</h1>
     <div *ngIf="errorFlag" class="alert alert-danger">{{errorMessage}}</div>
-    <form (ngSubmit)="login($event,user)"  #LoginForm="ngForm">
+    <form (ngSubmit)="login($event, user)"  #LoginForm="ngForm">
       <input type="email" [(ngModel)]="user.email"
              email="email" class="form-control"
              name="email" placeholder="Email"
@@ -35,7 +35,7 @@
         </label>
       </div>
       <br>
-      <button type="submit" class="btn btn-block" (click)="setlogin()" [disabled]="!LoginForm.form.valid">Log In</button>
+      <button type="submit" class="btn btn-block" [disabled]="!LoginForm.form.valid">Log In</button>
 
     </form>
   </div>
