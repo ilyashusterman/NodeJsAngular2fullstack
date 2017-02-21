@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.loading=true;
     event.preventDefault();
     let body = JSON.stringify(user);
-    console.log("body:"+body);
+   // console.log("body:"+body);
     if(this.isChecked){
       localStorage.setItem("user", body);
     }
@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
           this.router.navigate([redirect]);
       })
       .catch(function (error) {
-       let message = error.response.data;
-        console.log(message);
-        // this.setErrorMessage(message.value+'');
+       let message = JSON.stringify(error.message);
+      //  console.log(message);
+         this.setErrorMessage(message);
       });
   }
 
@@ -62,8 +62,8 @@ export class LoginComponent implements OnInit {
   setChecked(){
     this.isChecked= true;
   }
-  setErrorMessage(message : String){
-    console.log(message);
+  setErrorMessage(message: String){
+   console.log(message);
   }
 
   ngOnInit(): void {

@@ -54,22 +54,18 @@ db.once('open', function() {
     // create
     app.post('/login', function(req, res) {
         var user = new User(req.body);
-        console.log(user);
-        console.log('username is '+user.username+' pass '+user.password);
-        User.find({ username: user.username, password: user.password }, function (err, userFound) {
+        //console.log(user);
+       // console.log('username is '+user.username+' pass '+user.password);
+        User.findOne({ username: user.username, password: user.password }, function (err, userFound) {
 
         if (err){
-          console.log('error msg ' +error.message);
-          return res.status(500).json(err);
+          console.log('error msg ' +err.message);
+          return res.status(500).json(err.message);
         }
 
-        if (userFound) {
-          console.log("User FOUND "+ userFound);
-          var stringUser = JSON.stringify(userFound);
-          // var parsed = JSON.parse(userFound);
-          console.log(' is parsed '+parsed);
-          console.log('user : '+stringUser);
-          var newuser = {id: stringUser._id, username: stringUser.username, permissions: stringUser.permissions };
+        if (userFound&& userFound != "") {
+         // console.log("User FOUND "+ userFound);
+          var newuser = {id: userFound._id, username: userFound.username, permissions: userFound.permissions };
           req.session.user = newuser;
           console.log(req.session.user);
          return res.status(200).json('User logged in successfully');
