@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {User} from './User';
-import axios from 'axios';
+import axios from 'axios';  // better then jquery
 import { Http, Headers, Response } from '@angular/http';
 import {forEach} from "@angular/router/src/utils/collection";
+import {assetUrl} from "@angular/compiler/src/identifiers";
 
 
 @Component({

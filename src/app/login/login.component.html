@@ -4,11 +4,9 @@
   <!--<button (click)="setlogin()">Press to login</button>-->
   <!--<button (click)="setAdminPermission()">Press to give Admin permission</button>-->
 <!--</p>-->
-<div class="body">
 <div *ngIf="!isLoggedIn">
   <div class="login">
-    <img class="profile-img" src="../../assets/logo.jpg" alt="logo" >
-    <h1 class="text-center">{{title}}</h1>
+    <img class="profile-img" src="../../assets/logo.png" alt="logo" ><br>
     <div *ngIf="errorFlag" class="alert alert-danger">{{errorMessage}}</div>
     <form (ngSubmit)="login($event, user)"  #LoginForm="ngForm">
       <input type="email" [(ngModel)]="user.email"
@@ -31,13 +29,12 @@
       </div>
       <div class="checkbox-inline">
         <label>
-          <input type="checkbox" (click) ="setChecked()"> Remember Me
+          Remember Me <input type="checkbox" (click) ="setChecked()" >
         </label>
       </div>
       <br>
-      <button type="submit" class="btn btn-block" [disabled]="!LoginForm.form.valid">Log In</button>
+      <button type="submit" class="btn btn-block" >Log In</button><!-- [disabled]="!LoginForm.form.valid"-->
 
     </form>
   </div>
-</div>
 </div>
