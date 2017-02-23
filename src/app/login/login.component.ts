@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {User} from './User';
-import axios from 'axios';  // better then jquery
+import axios from 'axios';
 import { Http, Headers, Response } from '@angular/http';
 import {forEach} from "@angular/router/src/utils/collection";
-import {assetUrl} from "@angular/compiler/src/identifiers";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthService, public router: Router) { }
 
   isChecked:boolean = false;
-  errorMessage:string ='Login Failed';
+  errorMessage:string ='Login Failed ';
   loginApproved: boolean = false;
   loading: boolean = false;
   debugWindow: boolean = false;
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     if(this.isChecked){
       localStorage.setItem("user", body);
     }
+    let self = this;
     axios.post('/users', {
       username: user.email,
       password: user.password
@@ -47,11 +48,14 @@ export class LoginComponent implements OnInit {
           this.router.navigate([redirect]);
       })
       .catch(function (error) {
-       let message = JSON.stringify(error.message);
-      //  console.log(message);
-         this.setErrorMessage(message);
+       let message = { errorMessage: error.response.data };
+         console.log(message.errorMessage);
+        let msg = message.errorMessage +' ' ;
+         self.setErrorMessage(msg);
+        //this.handleError(error);
       });
   }
+
 
 
   setLogin(){
@@ -63,10 +67,16 @@ export class LoginComponent implements OnInit {
   setChecked(){
     this.isChecked= true;
   }
-  setErrorMessage(message: String){
-   console.log(message);
+  setErrorMessage(message :string){
+    this.errorMessage=message;
   }
-
+  private handleError(error: Response) {
+    // in a real world app, we may send the server to some remote logging infrastructure
+    // instead of just logging it to the console
+    console.error(error);
+    this.setErrorMessage('Authentucation error '+error.statusText)
+    return Observable.throw(error.json().error || 'Server error');
+  }
   ngOnInit(): void {
     // let newUser = localStorage.getItem("user");
     // let newIsLoggedIn = localStorage.getItem("isLoggedIn");
