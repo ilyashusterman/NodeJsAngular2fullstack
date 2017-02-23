@@ -24,25 +24,26 @@ export class AuthService {
   public login(): boolean {
   //  Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
     let logged = localStorage.getItem("token");
-    console.log("login logged="+logged);
+    //console.log("login logged="+logged);
     return this.checkTokenSession(logged);
 
   }
 
   private checkTokenSession(logged: string): boolean {
     //TODO make call to backend to findout hashtoken
+    var valid = false;
     axios.post('/validate', {
       token: logged
     })
       .then(function (response) {
-        console.log('response is good '+response.data);
-        return true;
+        //console.log('response is good '+response.data);
+        valid = true;
       })
       .catch(function (error) {
         console.log('error is '+error);
-    return false;
+    valid = false;
       });
-    return false;
+    return valid;
   }
 
   logout(): void {
