@@ -26,6 +26,8 @@ This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_
 ## Production
 Run `npm run prod` to run frontend with a production ready bundle.
 
+## Build Production
+* Run `ng build prod` to make production bundle 
 
 ## To do
 * Tests

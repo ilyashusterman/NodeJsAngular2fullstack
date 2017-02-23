@@ -2,7 +2,7 @@
  * Created by ilya on 03/02/2017.
  */
 import { Injectable } from '@angular/core';
-
+import axios from 'axios';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
@@ -16,20 +16,33 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  public setLogin(user :User){
-   // Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
-    this.isLoggedIn = true;
-    localStorage.setItem("logged",JSON.stringify(this.isLoggedIn));
-    localStorage.setItem("user",JSON.stringify(user));
-    let logged = localStorage.getItem("logged");
-    console.log("setLogin logged="+logged);
+  public setLogin(user, token){
+    localStorage.setItem("token",token);
+    localStorage.setItem("user",user);
   }
+
   public login(): boolean {
   //  Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
-    let logged = localStorage.getItem("logged");
+    let logged = localStorage.getItem("token");
     console.log("login logged="+logged);
-    return JSON.parse(logged);
+    return this.checkTokenSession(logged);
 
+  }
+
+  private checkTokenSession(logged: string): boolean {
+    //TODO make call to backend to findout hashtoken
+    axios.post('/validate', {
+      token: logged
+    })
+      .then(function (response) {
+        console.log('response is good '+response.data);
+        return true;
+      })
+      .catch(function (error) {
+        console.log('error is '+error);
+    return false;
+      });
+    return false;
   }
 
   logout(): void {
