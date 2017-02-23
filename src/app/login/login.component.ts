@@ -35,13 +35,15 @@ export class LoginComponent implements OnInit {
     if(this.isChecked){
       localStorage.setItem("user", body);
     }
+    //gives the LoginComponent class instance for use in inner-scope
     let self = this;
+
     axios.post('/users', {
       username: user.email,
       password: user.password
     })
       .then(function (response) {
-     let  newUser = new User();
+     let newUser = new User();
         newUser.email = user.email;
           this.authService.setLogin(newUser);
           let redirect = '/dashboard';
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
        let message = { errorMessage: error.response.data };
          console.log(message.errorMessage);
         let msg = message.errorMessage +' ' ;
+        //uses the logincomponent instance in this scope
          self.setErrorMessage(msg);
         //this.handleError(error);
       });
