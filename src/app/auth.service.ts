@@ -31,18 +31,19 @@ export class AuthService {
 
   private checkTokenSession(logged: string): boolean {
     //TODO make call to backend to findout hashtoken
+    var valid = false;
     axios.post('/validate', {
       token: logged
     })
       .then(function (response) {
         console.log('response is good '+response.data);
-        return true;
+        valid = true;
       })
       .catch(function (error) {
         console.log('error is '+error);
-    return false;
+    valid = false;
       });
-    return false;
+    return valid;
   }
 
   logout(): void {
