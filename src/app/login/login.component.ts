@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     if(this.isChecked){
       localStorage.setItem("user", body);
     }
+    let self = this;
     axios.post('/users', {
       username: user.email,
       password: user.password
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
        let message = { errorMessage: error.response.data };
          console.log(message.errorMessage);
         let msg = message.errorMessage +' ' ;
-         this.setErrorMessage(msg);
+         self.setErrorMessage(msg);
         //this.handleError(error);
       });
   }
