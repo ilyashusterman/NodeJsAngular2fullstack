@@ -35,13 +35,14 @@ export class AuthService {
       token: logged
     })
       .then(function (response) {
-        console.log('response is '+response);
+        console.log('response is good '+response.data);
         return true;
       })
       .catch(function (error) {
         console.log('error is '+error);
+    return false;
       });
-    return true;
+    return false;
   }
 
   logout(): void {
