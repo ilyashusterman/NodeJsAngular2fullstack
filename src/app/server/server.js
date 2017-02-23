@@ -6,6 +6,11 @@ var path = require('path');
 var morgan = require('morgan'); // logger
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var crypto = require('crypto');
+var fs = require('fs');
+var md5sum = crypto.createHash('md5');
+
+
 var app = express();
 app.set('port', (process.env.PORT || 3000));
 
@@ -29,7 +34,10 @@ mongoose.Promise = global.Promise;
 
 // Models
 var User = require('./user.model.js');
-
+function crypte(str){
+  var hash = crypto.createHash('md5').update(str).digest('hex');
+  return hash;
+}
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('Connected to MongoDB');
@@ -54,22 +62,23 @@ db.once('open', function() {
     // create
     app.post('/login', function(req, res) {
         var user = new User(req.body);
-        //console.log(user);
-       // console.log('username is '+user.username+' pass '+user.password);
         User.findOne({ username: user.username, password: user.password }, function (err, userFound) {
-
+          //error has occured during connecting querying to database
         if (err){
           console.log('error msg ' +err.message);
           return res.status(500).json(err.message);
         }
-
+        //Login successfully! user found in database
         if (userFound&& userFound != "") {
-         // console.log("User FOUND "+ userFound);
-          var newuser = {id: userFound._id, username: userFound.username, permissions: userFound.permissions };
+          var hash = crypte(userFound.username+new Date());
+          var newuser = {token: hash, username: userFound.username, permissions: userFound.permissions };
           req.session.user = newuser;
           console.log(req.session.user);
-         return res.status(200).json('User logged in successfully');
-        } else {
+          console.log('User logged in successfully');
+         return res.status(200).json(newuser);
+        }
+        //Login not successfully user not found in database
+        else {
           console.log("User NOT FOUND");
           return res.status(401).json('User not authorized');
         }
@@ -82,6 +91,17 @@ db.once('open', function() {
       if(err) return res.status(500).json(err.message);
       res.status(200).json(obj);
     });
+  });
+  app.post('/validate', function(req, res) {
+    var sessionToken = req.body.token;
+    var user = req.session.user;
+    console.log('user from server session '+sessionToken+' user token '+user.token);
+      if(sessionToken === user.token) {
+        res.status(200).json("validated successfully!");
+      }else {
+        res.status(500).json("did not validate successfully");
+      }
+
   });
 
     // find by id
