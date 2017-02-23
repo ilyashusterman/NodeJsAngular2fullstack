@@ -1,40 +1,46 @@
 <!--<p>-->
 <!--Login-->
 <!--Component-->
-  <!--<button (click)="setlogin()">Press to login</button>-->
-  <!--<button (click)="setAdminPermission()">Press to give Admin permission</button>-->
+<!--<button (click)="setlogin()">Press to login</button>-->
+<!--<button (click)="setAdminPermission()">Press to give Admin permission</button>-->
 <!--</p>-->
-<div *ngIf="!isLoggedIn">
-  <div class="login">
-    <img class="profile-img" src="../../assets/logo.png" alt="logo" ><br>
-    <div *ngIf="errorFlag" class="alert alert-danger">{{errorMessage}}</div>
-    <form (ngSubmit)="login($event, user)"  #LoginForm="ngForm">
-      <input type="email" [(ngModel)]="user.email"
-             email="email" class="form-control"
-             name="email" placeholder="Email"
-             required  #email="ngModel" />
-      <div [hidden]="email.valid || email.pristine"
-           class="alert alert-danger">
+<div class="body">
+  <div *ngIf="!isLoggedIn">
+    <div class="login">
+      <img class="profile-img" src="../../assets/logo.png" alt="logo" >
+      <h1 class="text-center">{{title}}</h1>
+      <div *ngIf="errorFlag" class="alert alert-danger">{{errorMessage}}</div>
+      <form (ngSubmit)="login($event, user)"  #LoginForm="ngForm">
+        <input type="email" [(ngModel)]="user.email"
+               email="email" class="form-control"
+               name="email" placeholder="Email"
+               required  #email="ngModel" />
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
 
-        Email is required
-      </div>
+          Email is required
+        </div>
 
-      <input type="password" class="form-control" id="password"
-             required placeholder="Password"
-             [(ngModel)]="user.password" name="password"
-             #password="ngModel" >
-      <div [hidden]="password.pristine || password.valid"
-           class="alert alert-danger">
-        Password is required
-      </div>
-      <div class="checkbox-inline">
-        <label>
-          Remember Me <input type="checkbox" (click) ="setChecked()" >
-        </label>
-      </div>
-      <br>
-      <button type="submit" class="btn btn-block" >Log In</button><!-- [disabled]="!LoginForm.form.valid"-->
+        <input type="password" class="form-control" id="password"
+               required placeholder="Password"
+               [(ngModel)]="user.password" name="password"
+               #password="ngModel" >
+        <div [hidden]="password.pristine || password.valid"
+             class="alert alert-danger">
+          Password is required
+        </div>
+        <div class="checkbox-inline">
+          <label>
+            Remember Me<input type="checkbox" (click) ="setChecked()">
+          </label>
+        </div>
+        <br>
+        <div>
+          <button type="submit" class="btn btn-block">Log In</button><!--> [disabled]="!LoginForm.form.valid"<!-->
 
-    </form>
+        </div>
+
+      </form>
+    </div>
   </div>
 </div>
