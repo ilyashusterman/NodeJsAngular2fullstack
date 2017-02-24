@@ -76,7 +76,7 @@ export class AuthService {
       permission: permission
     })
       .then(function (response) {
-        console.log('response is good '+response.data);
+       // console.log('response is good '+response.data);
         valid = true;
         return new Promise<boolean>((resolve, reject) => {
             resolve(true);
@@ -96,31 +96,10 @@ export class AuthService {
   logout(): void {
     //this.isLoggedIn = false;
   }
-  public setAdminPermission(){
-    localStorage.setItem("admin",JSON.stringify(true));
-    let logged = localStorage.getItem("admin");
-    console.log("setAdminPermission admin="+logged);
-  }
 
-  public adminPermission() : Observable<boolean> | boolean | Promise<boolean>{
-    console.log("adminPermission admin" );
-    return this.checkUserPermission('admin');
-  }
 
   public getPermission(permission: string) : Observable<boolean> | boolean |Promise<boolean>{
     return this.checkUserPermission(permission);
-  }
-  public setScriptsPermission(){
-    // Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
-    // this.isLoggedIn = true;
-    localStorage.setItem("scripts",JSON.stringify(true));
-    let logged = localStorage.getItem("scripts");
-    console.log("setScriptsPermission scripts="+logged);
-  }
-  public scriptsPermission() {
-    let scriptsLogged = localStorage.getItem("scripts");
-    console.log("scriptsPermission script="+scriptsLogged );
-    return JSON.parse(scriptsLogged);
   }
 
   setLogout() {
@@ -136,7 +115,7 @@ export class AuthService {
           token: hash
         })
           .then(function (response) {
-            console.log('response is good ' + response.data);
+            //console.log('response is good ' + response.data);
             valid = true;
             return new Promise<boolean>((resolve, reject) => {
               resolve(true);
