@@ -75,7 +75,8 @@ db.once('open', function() {
           req.session.user = newuser;
           console.log(req.session.user);
           console.log('User logged in successfully');
-         return res.status(200).json(newuser);
+          var storageUser =  {token: hash, username: userFound.username };
+         return res.status(200).json(storageUser);
         }
         //Login not successfully user not found in database
         else {
@@ -95,15 +96,49 @@ db.once('open', function() {
   app.post('/validate', function(req, res) {
     var sessionToken = req.body.token;
     var user = req.session.user;
-    console.log('user from server session '+sessionToken+' user token '+user.token);
-      if(sessionToken === user.token) {
+    //console.log('user from server session '+sessionToken+' user token '+user.token);
+      if(user && sessionToken === user.token) {
         res.status(200).json("validated successfully!");
       }else {
-        res.status(500).json("did not validate successfully");
+        res.status(401).json("did not validate successfully");
       }
+  });
+
+  app.post('/validate/permission', function(req, res) {
+    var requestedPermission = req.body.permission;
+    var user = req.session.user;
+    var hasPermission = false;
+    //console.log('user from server session '+sessionToken+' user token '+user.token);
+    if(user) {
+            user.permissions.forEach(function(permission){
+              if (permission === requestedPermission){
+                res.status(200).json("has permission!");
+                hasPermission = true;
+              }
+            });
+               if(!hasPermission) {
+              res.status(401).json("does not have permission!");
+               }
+    }else {
+      res.status(401).json("did not validate successfully");
+    }
 
   });
 
+  app.post('/logout', function(req, res) {
+    var sessionToken = req.body.token;
+    var user = req.session.user;
+    console.log("before logout req.session.user = "+req.session.user);
+    //console.log('user from server session '+sessionToken+' user token '+user.token);
+      req.session.user = null;
+      console.log("req.session.user = "+req.session.user);
+    if(user && sessionToken === user.token) {
+      res.status(200).json("logout successfully!");
+
+    }else {
+      res.status(401).json("did not logout successfully");
+    }
+  });
     // find by id
     app.get('/user/:id', function(req, res) {
         User.findOne({_id: req.params.id}, function(err, obj) {
