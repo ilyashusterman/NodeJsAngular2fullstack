@@ -45,10 +45,7 @@ export class LoginComponent implements OnInit {
       .then(function (response) {
      // let newUser = new User();
         let hashUser = JSON.stringify(response.data);
-        var userObj = JSON.parse( hashUser );
-        console.log('token user '+userObj.token);
-        // newUser.email = user.hash;
-          self.authService.setLogin(hashUser, userObj.token);
+          self.authService.setLogin(hashUser);
           let redirect = '/dashboard';
           self.router.navigate([redirect]);
       })
@@ -73,27 +70,17 @@ export class LoginComponent implements OnInit {
   setChecked(){
     this.isChecked= true;
   }
+
   setErrorMessage(message :string){
     this.errorMessage=message;
   }
+
   private handleError(error: Response) {
-    // in a real world app, we may send the server to some remote logging infrastructure
-    // instead of just logging it to the console
     console.error(error);
     this.setErrorMessage('Authentucation error '+error.statusText)
     return Observable.throw(error.json().error || 'Server error');
   }
   ngOnInit(): void {
-    // let newUser = localStorage.getItem("user");
-    // let newIsLoggedIn = localStorage.getItem("isLoggedIn");
-    // if(newUser){
-    //   this.user=JSON.parse(newUser);
-    // }
-    // console.log(newIsLoggedIn);
-    // if(newIsLoggedIn){
-    //   this.isLoggedIn =JSON.parse(newIsLoggedIn);
-    //   console.log("User Checke"+this.isLoggedIn);
-    // }
     //TODO checks if the user session is already logged in
   }
 

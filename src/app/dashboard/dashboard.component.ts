@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   }
   setLogout(){
     this.authService.setLogout();
-    let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/login';
+    let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
     console.log("redirect="+redirect);
     this.router.navigate([redirect]);
   }

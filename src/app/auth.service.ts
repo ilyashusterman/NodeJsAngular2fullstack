@@ -3,67 +3,116 @@
  */
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
 import {User} from "./login/User";
 
 @Injectable()
 export class AuthService {
-  isLoggedIn: boolean = false;
+ /// isLoggedIn: boolean = false;
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  public setLogin(user, token){
-    localStorage.setItem("token",token);
+  public setLogin(user) {
     localStorage.setItem("user",user);
   }
 
-  public login(): boolean {
-  //  Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
-    let logged = localStorage.getItem("token");
-    //console.log("login logged="+logged);
-    return this.checkTokenSession(logged);
-
+  public login(): Promise<boolean> | Observable<boolean> | boolean {
+    let user = localStorage.getItem("user");
+    if(user)
+    {
+      let hash = JSON.parse(localStorage.getItem("user")).token;
+      if(hash) {
+        return this.checkTokenSession(hash);
+      }
+      return false;
+    }
+    return false;
   }
 
-  private checkTokenSession(logged: string): boolean {
-    //TODO make call to backend to findout hashtoken
-    var valid = false;
-    axios.post('/validate', {
+  private checkTokenSession(logged: string):Promise<boolean> | Observable<boolean> | boolean {
+    let self = this;
+    // make call to backend to findout hashtoken
+
+    let valid = false;
+    let isvalid;
+
+    isvalid = axios.post('/validate', {
       token: logged
     })
       .then(function (response) {
         //console.log('response is good '+response.data);
-        valid = true;
+         valid = true;
+        return new Promise<boolean>((resolve, reject) => {
+          resolve(true);
+
+        });
+        //console.log('response is valid '+self.isLoggedIn);
+       // return true;
       })
       .catch(function (error) {
         console.log('error is '+error);
-    valid = false;
+        valid = false;
+        return new Promise<boolean>((resolve, reject) => {
+          resolve(false);
+        });
+       // return false;
       });
-    return valid;
+    return isvalid;
+   // return Observable.of(true).delay(1000).do(val => valid);
+  }
+
+  private checkUserPermission(permission: string): Observable<boolean> | boolean  | Promise<boolean>{
+    // make call to backend to findout permission
+    let self = this;
+    let valid = false;
+    let isvalid;
+
+    isvalid = axios.post('/validate/permission', {
+      permission: permission
+    })
+      .then(function (response) {
+        console.log('response is good '+response.data);
+        valid = true;
+        return new Promise<boolean>((resolve, reject) => {
+            resolve(true);
+        });
+      })
+      .catch(function (error) {
+        console.log('error is '+error);
+        valid = false;
+        return new Promise<boolean>((resolve, reject) => {
+          resolve(false);
+        });
+      });
+    return isvalid;
+    //return Observable.of().delay(1000).do(val => self.isLoggedIn = valid);
   }
 
   logout(): void {
-    this.isLoggedIn = false;
+    //this.isLoggedIn = false;
   }
   public setAdminPermission(){
-    Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
-    this.isLoggedIn = true;
     localStorage.setItem("admin",JSON.stringify(true));
     let logged = localStorage.getItem("admin");
     console.log("setAdminPermission admin="+logged);
   }
-  public adminPermission() {
-    let adminLogged = localStorage.getItem("admin");
-    console.log("adminPermission admin="+adminLogged );
-    return JSON.parse(adminLogged);
+
+  public adminPermission() : Observable<boolean> | boolean | Promise<boolean>{
+    console.log("adminPermission admin" );
+    return this.checkUserPermission('admin');
+  }
+
+  public getPermission(permission: string) : Observable<boolean> | boolean |Promise<boolean>{
+    return this.checkUserPermission(permission);
   }
   public setScriptsPermission(){
-    Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
-    this.isLoggedIn = true;
+    // Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+    // this.isLoggedIn = true;
     localStorage.setItem("scripts",JSON.stringify(true));
     let logged = localStorage.getItem("scripts");
     console.log("setScriptsPermission scripts="+logged);
@@ -76,7 +125,34 @@ export class AuthService {
 
   setLogout() {
     //TODO sends a backend request to logout from session
-    localStorage.clear();
+    let self = this;
+    let valid = false;
+    let isvalid;
+    let user = localStorage.getItem("user");
+    if (user) {
+      let hash = JSON.parse(localStorage.getItem("user")).token;
+      if (hash) {
+        axios.post('/logout', {
+          token: hash
+        })
+          .then(function (response) {
+            console.log('response is good ' + response.data);
+            valid = true;
+            return new Promise<boolean>((resolve, reject) => {
+              resolve(true);
+            });
+          })
+          .catch(function (error) {
+            console.log('error is ' + error);
+            valid = false;
+            return new Promise<boolean>((resolve, reject) => {
+              resolve(false);
+            });
+          });
+      }
+    }
+        localStorage.clear();
   }
+
 }
 
