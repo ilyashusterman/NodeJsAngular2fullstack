@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
 
   setErrorMessage(message :string){
     this.errorMessage=message;
+    this.errorFlag = true;
   }
 
   private handleError(error: Response) {

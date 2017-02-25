@@ -4,7 +4,8 @@
 <!--<button (click)="setlogin()">Press to login</button>-->
 <!--<button (click)="setAdminPermission()">Press to give Admin permission</button>-->
 <!--</p>-->
-<div class="body">
+<div class="body-login">
+<div>
   <div *ngIf="!isLoggedIn">
     <div class="login">
       <img class="profile-img" src="../../assets/logo.png" alt="logo" >
@@ -25,15 +26,16 @@
                required placeholder="Password"
                [(ngModel)]="user.password" name="password"
                #password="ngModel" >
-        <div [hidden]="password.pristine || password.valid"
-             class="alert alert-danger">
-          Password is required
-        </div>
         <div class="checkbox-inline">
           <label>
             Remember Me<input type="checkbox" (click) ="setChecked()">
           </label>
         </div>
+        <div [hidden]="password.pristine || password.valid"
+             class="alert alert-danger">
+          Password is required
+        </div>
+
         <br>
         <div>
           <button type="submit" class="btn btn-block">Log In</button><!--> [disabled]="!LoginForm.form.valid"<!-->
@@ -43,4 +45,5 @@
       </form>
     </div>
   </div>
+</div>
 </div>
