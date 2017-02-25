@@ -38,7 +38,7 @@ var filter = function(req, res, next) {
     console.log("User has permission!");
     return next();
   }else {
-    console.log("User doesnt have permission");
+    console.log("User does not have permission");
     return res.sendStatus(400);
   }
 };
