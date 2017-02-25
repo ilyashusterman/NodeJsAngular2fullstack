@@ -26,11 +26,40 @@ app.use(session({
   maxAge: 3600000,
   saveUninitialized: true
 }));
+// Your own super cool function
+var filter = function(req, res, next) {
+  //console.log("GOT REQUEST !");
+  if (req.method !== 'POST') return next(); // Passing the request to the next handler in the stack.
+  if(req.method === 'POST' &&  (req.url === '/' || req.url === '/validate' || req.url === '/validate/permission' ||
+    req.url === '/login' || req.url === '/logout')) return next();
+  // Perform your validations.
+  var user = req.session.user;
+  if(user&& user.permissions && checkAdmin(user.permissions)){
+    console.log("User has permission!");
+    return next();
+  }else {
+    console.log("User doesnt have permission");
+    return res.sendStatus(400);
+  }
+};
+
+function checkAdmin(permissions){
+  for(var permission in permissions){
+    if(permission === 'admin'){return true ;}
+  }
+  return false;
+}
+
+
+
+  app.use(filter); // Here you add your filter to the stack.
+
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/test');
 var db = mongoose.connection;
 mongoose.Promise = global.Promise;
+
 
 // Models
 var User = require('./user.model.js');
@@ -66,7 +95,7 @@ db.once('open', function() {
           //error has occured during connecting querying to database
         if (err){
           console.log('error msg ' +err.message);
-          return res.status(500).json(err.message);
+          return res.status(500).json('Server Internal error :'+err.message);
         }
         //Login successfully! user found in database
         if (userFound&& userFound != "") {
@@ -80,8 +109,8 @@ db.once('open', function() {
         }
         //Login not successfully user not found in database
         else {
-          console.log("User NOT FOUND");
-          return res.status(401).json('User not authorized');
+          console.log("authorized login has been commited - User NOT FOUND");
+          return res.status(401).json('Username or password does not match');
         }
       });
     });

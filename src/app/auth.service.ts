@@ -93,17 +93,12 @@ export class AuthService {
     //return Observable.of().delay(1000).do(val => self.isLoggedIn = valid);
   }
 
-  logout(): void {
-    //this.isLoggedIn = false;
-  }
-
-
   public getPermission(permission: string) : Observable<boolean> | boolean |Promise<boolean>{
     return this.checkUserPermission(permission);
   }
 
   setLogout() {
-    //TODO sends a backend request to logout from session
+    // sends a backend request to logout from session
     let self = this;
     let valid = false;
     let isvalid;
