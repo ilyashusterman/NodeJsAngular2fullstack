@@ -1,0 +1,23 @@
+.admin{
+  margin-top: 175px;
+}
+.navbar-nav>li>a:hover{
+  background-color: #42A948;
+}
+.navbar-nav>li>a:visited{
+  background-color: #42A948;
+}
+.icon-bar{
+  background-color: white;
+}
+@media screen and (min-width: 768px){
+  .admin{
+    margin-top: 75px;
+  }
+  .navbar-nav>li>a ,p {
+    padding-top: 10px;
+    padding-bottom:18px;
+    color: white;
+    font-size: 15px;
+  }
+}

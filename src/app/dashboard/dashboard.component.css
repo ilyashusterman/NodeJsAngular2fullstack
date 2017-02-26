@@ -1,8 +1,20 @@
-
+:host {
+  display: block;
+  height:950px;
+  width:100%;
+  background-image: url("../../assets/bg-blank.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position:center;
+}
 .navbar-nav>li>a:hover{
   background-color: #42A948;
 }
+.navbar-nav>li>a:visited{
+  background-color: #42A948;
+}
 p{
+  margin: inherit;
   color: white;
 }
 
@@ -20,7 +32,7 @@ p{
     font-size: 18px;
   }
   p{
-    padding-top: 19.8%;
+    padding-top: 19.78%;
   }
   .navbar-nav{
     height:75px;

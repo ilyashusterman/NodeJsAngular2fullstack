@@ -1,3 +1,30 @@
-<p>
-  admin panel works!
-</p>
+<div class="admin">
+  <nav class="navbar navbar-light" style="background-color: #1d608b;">
+    <!-- Navbar content -->
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <!--<span class="sr-only">Toggle navigation</span>-->
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!--<a href="#" class="navbar-brand">Brand</a>-->
+      </div>
+      <nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+          <!--<img class="profile-img" alt="logo"  width="80px" height="78px" src="../../assets/logo.png">-->
+
+          <ul class="nav navbar-nav">
+            <li><a routerLink="users" routerLinkActive="active" >Users</a></li>
+            <li><a routerLink="issues" routerLinkActive="active">Issues</a></li>
+            <li><a routerLink="agents" routerLinkActive="active">Sales Agents</a></li>
+            <li><a routerLink="check_list" routerLinkActive="active">Check List</a></li>
+          </ul>
+         </div><!-- /.navbar-collapse -->
+      </nav>
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
