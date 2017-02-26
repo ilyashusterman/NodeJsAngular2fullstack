@@ -3,6 +3,7 @@ import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 import {User} from './User';
 import axios from 'axios';
+import environment from '../../environments/environment';
 import { Http, Headers, Response } from '@angular/http';
 import {forEach} from "@angular/router/src/utils/collection";
 import {Observable} from "rxjs";
@@ -26,6 +27,14 @@ export class LoginComponent implements OnInit {
   errorFlag: boolean = false;
   users : User[];
   user= new User();
+  debugMode : boolean = false;
+
+
+  static debug : boolean = false;
+
+  get staticDebug() {
+    return LoginComponent.debug
+  }
 
   login(event: any,user: User) {
     this.loading=true;
@@ -37,26 +46,31 @@ export class LoginComponent implements OnInit {
     }
     //gives the LoginComponent class instance for use in inner-scope
     let self = this;
-
-    axios.post('/login', {
-      username: user.email,
-      password: user.password
-    })
-      .then(function (response) {
-     // let newUser = new User();
-        let hashUser = JSON.stringify(response.data);
+    if(!LoginComponent.debug) {
+      axios.post('/login', {
+        username: user.email,
+        password: user.password
+      })
+        .then(function (response) {
+          // let newUser = new User();
+          let hashUser = JSON.stringify(response.data);
           self.authService.setLogin(hashUser);
           let redirect = '/dashboard';
           self.router.navigate([redirect]);
-      })
-      .catch(function (error) {
-       let message = { errorMessage: error.response.data };
-         console.log(message.errorMessage);
-        let msg = message.errorMessage +' ' ;
-        //uses the logincomponent instance in this scope
-         self.setErrorMessage(msg);
-        //this.handleError(error);
-      });
+        })
+        .catch(function (error) {
+          let message = {errorMessage: error.response.data};
+          console.log(message.errorMessage);
+          let msg = message.errorMessage + ' ';
+          //uses the logincomponent instance in this scope
+          self.setErrorMessage(msg);
+          //this.handleError(error);
+        });
+    }
+    else {
+      let redirect = '/dashboard';
+      this.router.navigate([redirect]);
+    }
   }
 
 
@@ -83,6 +97,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     //TODO checks if the user session is already logged in
+    LoginComponent.debug=environment.debug
   }
 
 

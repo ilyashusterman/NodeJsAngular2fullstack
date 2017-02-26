@@ -29,7 +29,7 @@ app.use(session({
 // Your own super cool function
 var filter = function(req, res, next) {
   //console.log("GOT REQUEST !");
-  if (req.method !== 'POST') return next(); // Passing the request to the next handler in the stack.
+  if (req.method === 'GET') return next(); // Passing the request to the next handler in the stack.
   if(req.method === 'POST' &&  (req.url === '/' || req.url === '/validate' || req.url === '/validate/permission' ||
     req.url === '/login' || req.url === '/logout')) return next();
   // Perform your validations.
@@ -52,7 +52,7 @@ function checkAdmin(permissions){
 
 
 
-  app.use(filter); // Here you add your filter to the stack.
+  app.use(filter); // Here you add your filter to the app.
 
 
 var mongoose = require('mongoose');

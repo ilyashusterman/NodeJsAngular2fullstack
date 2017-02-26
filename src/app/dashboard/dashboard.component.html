@@ -3,22 +3,24 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--<span class="sr-only">Toggle navigation</span>-->
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      <!--<a href="#" class="navbar-brand">Brand</a>-->
+      <img class="navbar-logo" alt="logo" width="75px" height="75px"  src="../../assets/logo.png">
+
+
     </div>
 
     <nav>
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse">
+        <!--<img class="profile-img" alt="logo"  width="80px" height="78px" src="../../assets/logo.png">-->
+
         <ul class="nav navbar-nav">
-          <li>
-
-            <img class="profile-img" alt="logo"  width="80px" height="80px"></li>
-
           <li><a routerLink="admin" routerLinkActive="active">Admin panel</a></li>
           <li><a routerLink="statistics" routerLinkActive="active">Statistics</a></li>
           <li><a routerLink="qa" routerLinkActive="active">QA Form</a></li>
@@ -28,7 +30,6 @@
         <ul class="nav navbar-nav navbar-right">
           <li><p>Welcome User</p></li>
           <li><a (click)="setLogout()">Log Out</a></li>
-          <!-- TODO Method from loginservice to logout with backend-->
         </ul>
       </div><!-- /.navbar-collapse -->
     </nav>

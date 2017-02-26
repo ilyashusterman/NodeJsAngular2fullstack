@@ -1,20 +1,29 @@
-.navbar-nav>li>a ,p {
-  padding-top: 25px;
-  padding-bottom:30px;
-  color: white;
-  font-size: 18px;
-}
-p{
-  padding-top: 19.8%;
-}
-.navbar-nav{
-  height:75px;
 
-}
 .navbar-nav>li>a:hover{
   background-color: #42A948;
+}
+p{
+  color: white;
 }
 
 /*.navbar-nav>li>a:active{*/
 /*background-color: #a94442;*/
 /*}*/
+.icon-bar{
+  background-color: white;
+}
+@media screen and (min-width: 768px){
+  .navbar-nav>li>a ,p {
+    padding-top: 25px;
+    padding-bottom:30px;
+    color: white;
+    font-size: 18px;
+  }
+  p{
+    padding-top: 19.8%;
+  }
+  .navbar-nav{
+    height:75px;
+
+  }
+}

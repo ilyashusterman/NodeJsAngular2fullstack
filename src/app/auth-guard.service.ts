@@ -10,6 +10,7 @@ import {
 }                           from '@angular/router';
 import { AuthService }      from './auth.service';
 import {Observable} from "rxjs";
+import {LoginComponent} from "./login/login.component";
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
@@ -19,6 +20,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     let url: string = state.url;
+    if(LoginComponent.debug){
+      return true;
+    }
     let answer = this.authService.login();
     //console.log("AuthGuard-canActivate answer="+answer);
     return answer;
@@ -29,7 +33,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
   checkLogin(url: string, promise :Promise<boolean> | boolean | Observable<boolean>): boolean {
     if (promise) { return true; }
-
+    if(LoginComponent.debug){
+      return true;
+    }
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
 
