@@ -8,6 +8,7 @@ import {AdminComponent} from "../admin/admin.component";
 import {ScriptsComponent} from "../scripts/scripts.component";
 import {AdminGuard} from "../admin/admin-guard.service";
 import {AuthService} from "../auth.service";
+import {UserComponent} from "../admin/user/user.component";
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import {AuthService} from "../auth.service";
     DashboardListComponent,
     DashboardhomeComponent,
     AdminComponent,
+    UserComponent,
     ScriptsComponent
   ]
 })

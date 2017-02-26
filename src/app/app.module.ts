@@ -6,13 +6,7 @@ import {LoginComponent} from "./login/login.component";
 import { NotfoundComponent } from './notfound/notfound.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {LoginRoutingModule} from "./login/login-routing.module";
-import {DashboardRoutingModule} from "./dashboard/dashboard-routing.module";
-import { DashboardhomeComponent } from './dashboardhome/dashboardhome.component';
-import { DashboardListComponent } from './dashboard-list/dashboard-list.component';
-import {DashboardModule} from "./dashboard/dashboard.module";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {AdminComponent} from "./admin/admin.component";
-import {ScriptsComponent} from "./scripts/scripts.component";
+
 
 @NgModule({
   imports: [
