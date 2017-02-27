@@ -13,4 +13,5 @@ const routes: Routes = [];
     AuthService
   ]
 })
+
 export class ScriptsRoutingModule { }
