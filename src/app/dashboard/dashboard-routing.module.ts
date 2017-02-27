@@ -13,6 +13,8 @@ import {IssueComponent} from "../admin/issue/issue.component";
 import {AgentsComponent} from "../admin/agents/agents.component";
 import {CheckListComponent} from "../admin/check-list/check-list.component";
 import {QaComponent} from "../qa/qa.component";
+import {StatisticComponent} from "../statistic/statistic.component";
+import {StatisticGuard} from "../statistic/statistic-guard.service";
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -57,6 +59,11 @@ const dashboardRoutes: Routes = [
           {
             path: 'qa',
             component: QaComponent,
+            canActivate: [ScriptsGuard]
+          },
+          {
+            path: 'statistic',
+            component: StatisticComponent,
             canActivate: [ScriptsGuard]
           },
           {
