@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {AdminGuard} from "./admin-guard.service";
 import {AuthService} from "../auth.service";
 import {UserComponent} from "./user/user.component";
+import {IssueComponent} from "./issue/issue.component";
+import {AgentsComponent} from "./agents/agents.component";
 
 const routes: Routes = [
   {
@@ -10,6 +12,18 @@ const routes: Routes = [
     component: UserComponent
     // canActivate: [AdminGuard]
   },
+  {
+    path:'issue',
+    component:IssueComponent
+  },
+  {
+    path:'agents',
+    component:AgentsComponent
+  },
+  {
+    path:'check_list',
+    component:AgentsComponent
+  }
 ];
 
 @NgModule({

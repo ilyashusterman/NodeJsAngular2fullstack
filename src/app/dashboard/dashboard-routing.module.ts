@@ -9,7 +9,9 @@ import {AdminGuard} from "../admin/admin-guard.service";
 import {AuthService} from "../auth.service";
 import {ScriptsGuard} from "../scripts/scripts-guard.service";
 import {UserComponent} from "../admin/user/user.component";
-
+import {IssueComponent} from "../admin/issue/issue.component";
+import {AgentsComponent} from "../admin/agents/agents.component";
+import {CheckListComponent} from "../admin/check-list/check-list.component";
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -27,6 +29,21 @@ const dashboardRoutes: Routes = [
               {
                 path: 'user',
                 component: UserComponent,
+                canActivate: [AdminGuard]
+              },
+              {
+                path: 'issue',
+                component: IssueComponent,
+                canActivate: [AdminGuard]
+              },
+              {
+                path: 'agents',
+                component: AgentsComponent,
+                canActivate: [AdminGuard]
+              },
+              {
+                path: 'check_list',
+                component: CheckListComponent,
                 canActivate: [AdminGuard]
               }
             ]

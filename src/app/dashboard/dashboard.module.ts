@@ -9,6 +9,9 @@ import {ScriptsComponent} from "../scripts/scripts.component";
 import {AdminGuard} from "../admin/admin-guard.service";
 import {AuthService} from "../auth.service";
 import {UserComponent} from "../admin/user/user.component";
+import {IssueComponent} from "../admin/issue/issue.component";
+import {AgentsComponent} from "../admin/agents/agents.component";
+import {CheckListComponent} from "../admin/check-list/check-list.component";
 
 @NgModule({
   imports: [
@@ -20,6 +23,9 @@ import {UserComponent} from "../admin/user/user.component";
     DashboardListComponent,
     DashboardhomeComponent,
     AdminComponent,
+    CheckListComponent,
+    IssueComponent,
+    AgentsComponent,
     UserComponent,
     ScriptsComponent
   ]
