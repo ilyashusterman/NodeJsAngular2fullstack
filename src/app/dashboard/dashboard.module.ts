@@ -12,6 +12,7 @@ import {UserComponent} from "../admin/user/user.component";
 import {IssueComponent} from "../admin/issue/issue.component";
 import {AgentsComponent} from "../admin/agents/agents.component";
 import {CheckListComponent} from "../admin/check-list/check-list.component";
+import {QaComponent} from "../qa/qa.component";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import {CheckListComponent} from "../admin/check-list/check-list.component";
     DashboardhomeComponent,
     AdminComponent,
     CheckListComponent,
+    QaComponent,
     IssueComponent,
     AgentsComponent,
     UserComponent,

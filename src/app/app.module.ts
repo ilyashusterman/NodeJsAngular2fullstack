@@ -6,6 +6,7 @@ import {LoginComponent} from "./login/login.component";
 import { NotfoundComponent } from './notfound/notfound.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {LoginRoutingModule} from "./login/login-routing.module";
+import { QaComponent } from './qa/qa.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {LoginRoutingModule} from "./login/login-routing.module";
   declarations: [
     AppComponent,
     LoginComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    // QaComponent
     // DashboardListComponent,
     // DashboardhomeComponent,
     // AdminComponent,
