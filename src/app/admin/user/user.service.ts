@@ -15,6 +15,7 @@ export class UserService {
   constructor(private http: Http, public router: Router) { }
 
   getUsers(): Promise<User[]> {
+    //TODO fix here ! to get the right data
     return this.http.get(this.usersUrl)
       .toPromise()
       .then(response => response.json().data as User[])
