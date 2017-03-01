@@ -15,6 +15,7 @@ import {CheckListComponent} from "../admin/check-list/check-list.component";
 import {QaComponent} from "../qa/qa.component";
 import {StatisticComponent} from "../statistic/statistic.component";
 import {StatisticGuard} from "../statistic/statistic-guard.service";
+import {QaGuard} from "../qa/qa-guard.service";
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -59,12 +60,12 @@ const dashboardRoutes: Routes = [
           {
             path: 'qa',
             component: QaComponent,
-            canActivate: [ScriptsGuard]
+            canActivate: [QaGuard]
           },
           {
             path: 'statistic',
             component: StatisticComponent,
-            canActivate: [ScriptsGuard]
+            canActivate: [StatisticGuard]
           },
           {
             path: '',
@@ -85,7 +86,9 @@ const dashboardRoutes: Routes = [
   ],
   providers: [
     AdminGuard,
-    ScriptsGuard
+    ScriptsGuard,
+    QaGuard,
+    StatisticGuard
   ]
 })
 export class DashboardRoutingModule { }
