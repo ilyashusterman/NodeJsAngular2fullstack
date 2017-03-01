@@ -1,6 +1,6 @@
 :host {
   display: block;
-  height:950px;
+  height:901px;
   width:100%;
   background-image: url("../../assets/bg-blank.jpg");
   background-repeat: no-repeat;
@@ -14,7 +14,7 @@
 .navbar-nav>li>a:visited{
   background-color: #42A948;
 }
-p{
+.p{
   margin: inherit;
   color: white;
 }
@@ -33,7 +33,7 @@ p{
     color: white;
     font-size: 18px;
   }
-  p{
+  .p{
     padding-top: 19.78%;
   }
   .navbar-nav{
