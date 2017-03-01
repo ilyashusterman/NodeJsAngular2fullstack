@@ -5,6 +5,7 @@ import {AuthService} from "../auth.service";
 import {UserComponent} from "./user/user.component";
 import {IssueComponent} from "./issue/issue.component";
 import {AgentsComponent} from "./agents/agents.component";
+import {UserService} from "./user/user.service";
 
 const routes: Routes = [
   {

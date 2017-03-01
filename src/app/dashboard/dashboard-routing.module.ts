@@ -18,6 +18,8 @@ import {CheckListComponent} from "../admin/check-list/check-list.component";
 import {QaComponent} from "../qa/qa.component";
 import {StatisticComponent} from "../statistic/statistic.component";
 import {StatisticGuard} from "../statistic/statistic-guard.service";
+import {UserService} from "../admin/user/user.service";
+import {Http} from "@angular/http";
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -100,7 +102,8 @@ const dashboardRoutes: Routes = [
     AdminGuard,
     ScriptsGuard,
     QaGuard,
-    StatisticGuard
+    StatisticGuard,
+    UserService
   ]
 })
 export class DashboardRoutingModule { }

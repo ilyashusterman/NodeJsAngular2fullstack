@@ -8,6 +8,7 @@ import { AgentsComponent } from './agents/agents.component';
 import { CheckListComponent } from './check-list/check-list.component';
 import { DepartmentComponent } from './department/department.component';
 import { TeamComponent } from './team/team.component';
+import {UserService} from "./user/user.service";
 
 @NgModule({
   imports: [

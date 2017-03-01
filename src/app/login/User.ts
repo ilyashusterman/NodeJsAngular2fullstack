@@ -4,12 +4,12 @@
 export class User{
 
   id: String;
-  email: string;
+  username: string;
   password: string;
-  permissions: {} ;
+  permissions: string [] ;
   constructor(){}
   toString(){
-    return "User {'username':"+this.email+" 'password':"+this.password+" id:"+this.id+" }";
+    return "User {'username':"+this.username+" 'password':"+this.password+" id:"+this.id+" }";
   }
 
 }

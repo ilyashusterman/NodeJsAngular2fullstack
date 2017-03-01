@@ -8,6 +8,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {LoginRoutingModule} from "./login/login-routing.module";
 import { QaComponent } from './qa/qa.component';
 import { StatisticComponent } from './statistic/statistic.component';
+import {HttpModule} from "@angular/http";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { StatisticComponent } from './statistic/statistic.component';
     BrowserModule,
     FormsModule,
     LoginRoutingModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { StatisticComponent } from './statistic/statistic.component';
     // AdminComponent,
     // ScriptsComponent
   ],
+  //providers: [ UserService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -4,14 +4,15 @@
 import { Injectable } from '@angular/core';
 import {User} from "../../login/User";
 import {Http, Headers} from "@angular/http";
+import {Router} from "@angular/router";
 
 
 @Injectable()
 export class UserService {
-  private usersUrl = 'users';  // URL to web api
+  private usersUrl = '/users';  // URL to web api
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, public router: Router) { }
 
   getUsers(): Promise<User[]> {
     return this.http.get(this.usersUrl)
