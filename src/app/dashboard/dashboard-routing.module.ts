@@ -8,14 +8,16 @@ import {DashboardListComponent} from "../dashboard-list/dashboard-list.component
 import {AdminGuard} from "../admin/admin-guard.service";
 import {AuthService} from "../auth.service";
 import {ScriptsGuard} from "../scripts/scripts-guard.service";
+import {QaGuard} from "../qa/qa-guard.service";
 import {UserComponent} from "../admin/user/user.component";
+import {DepartmentComponent} from "../admin/department/department.component";
+import {TeamComponent} from "../admin/team/team.component";
 import {IssueComponent} from "../admin/issue/issue.component";
 import {AgentsComponent} from "../admin/agents/agents.component";
 import {CheckListComponent} from "../admin/check-list/check-list.component";
 import {QaComponent} from "../qa/qa.component";
 import {StatisticComponent} from "../statistic/statistic.component";
 import {StatisticGuard} from "../statistic/statistic-guard.service";
-import {QaGuard} from "../qa/qa-guard.service";
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -48,6 +50,16 @@ const dashboardRoutes: Routes = [
               {
                 path: 'check_list',
                 component: CheckListComponent,
+                canActivate: [AdminGuard]
+              },
+              {
+                path: 'department',
+                component: DepartmentComponent,
+                canActivate: [AdminGuard]
+              },
+              {
+                path: 'team',
+                component: TeamComponent,
                 canActivate: [AdminGuard]
               }
             ]

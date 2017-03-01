@@ -14,6 +14,8 @@ import {AgentsComponent} from "../admin/agents/agents.component";
 import {CheckListComponent} from "../admin/check-list/check-list.component";
 import {QaComponent} from "../qa/qa.component";
 import {StatisticComponent} from "../statistic/statistic.component";
+import {DepartmentComponent} from "../admin/department/department.component";
+import {TeamComponent} from "../admin/team/team.component";
 
 @NgModule({
   imports: [
@@ -28,6 +30,8 @@ import {StatisticComponent} from "../statistic/statistic.component";
     QaComponent,
     StatisticComponent,
     CheckListComponent,
+    DepartmentComponent,
+    TeamComponent,
     IssueComponent,
     AgentsComponent,
     UserComponent,

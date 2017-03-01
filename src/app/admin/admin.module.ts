@@ -6,12 +6,14 @@ import { UserComponent } from './user/user.component';
 import { IssueComponent } from './issue/issue.component';
 import { AgentsComponent } from './agents/agents.component';
 import { CheckListComponent } from './check-list/check-list.component';
+import { DepartmentComponent } from './department/department.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule
   ],
-  declarations: [AdminComponent, UserComponent, IssueComponent, AgentsComponent, CheckListComponent]
+  declarations: [AdminComponent, UserComponent, IssueComponent, AgentsComponent, CheckListComponent, DepartmentComponent, TeamComponent]
 })
 export class AdminModule { }

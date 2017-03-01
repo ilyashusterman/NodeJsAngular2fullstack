@@ -1,0 +1,19 @@
+/*.coming{*/
+  /*margin-top: 75px;*/
+  /*height: 100%;*/
+  /*width: 100%;*/
+
+  /*background-image: url("../../assets/statistics_bg.png");*/
+  /*!*background: no-repeat;*!*/
+/*}*/
+:host{
+  margin-top: 75px;
+  display: block;
+  height:950px;
+  width:100%;
+  background: #DDE2E3;
+  background-image: url("../../assets/statistics_bg.png");
+  background-repeat: no-repeat;
+  background-size:contain;
+  background-position:center;
+}
