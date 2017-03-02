@@ -21,14 +21,14 @@
         <td>{{user.password}}</td>
         <td class="checkbox">
           <tr>
-            <td><label><input type="checkbox" name="vehicle" value="Admin" checked="checked">Admin</label></td>
-            <td><label><input type="checkbox" name="vehicle" value="Qa" checked="checked">Qa-form</label><br>
+        <td><label><input type="checkbox" name="vehicle" value="Admin" checked="checked">{{user.permissions[0]}}</label></td>
+            <td><label><input type="checkbox" name="vehicle" value="Qa" checked="checked">{{user.permissions[1]}}</label><br>
             </td>
           </tr>
           <tr>
-            <td><label><input type="checkbox" name="vehicle" value="Transcript" checked="checked">Transcript</label>
+            <td><label><input type="checkbox" name="vehicle" value="Transcript" checked="checked">{{user.permissions[2]}}</label>
             </td>
-            <td><label><input type="checkbox" name="vehicle" value="Statistic" checked="checked">Statistic</label>
+            <td><label><input type="checkbox" name="vehicle" value="Statistic" checked="checked">{{user.permissions[3]}}</label>
             </td>
           </tr>
         </td>
