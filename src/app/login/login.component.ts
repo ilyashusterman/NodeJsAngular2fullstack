@@ -26,7 +26,13 @@ export class LoginComponent implements OnInit {
   isLoggedIn:boolean = false;
   errorFlag: boolean = false;
   users : User[];
-  user= new User();
+
+  //////CONSRACTOR ?!
+  id: string;
+  username: string;
+  password: string;
+  permissions: string [] ;
+  user= new User(this.id, this.username,this.password, this.permissions);
   debugMode : boolean = false;
 
 

@@ -15,9 +15,8 @@
   <div class="tbl-content">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
-      <section *ngFor="let user of users" >
-      <tr>
-        <td>id {{user.id}}</td>
+      <tr *ngFor="let user of users" >
+        <!--<td>id {{user.id}}</td>-->
         <td>{{user.username}}</td>
         <td>{{user.password}}</td>
         <td class="checkbox">
@@ -39,7 +38,6 @@
           </button>
         </td>
       </tr>
-      </section>
 
       <!--<tr>-->
         <!--<td>Moshe</td>-->

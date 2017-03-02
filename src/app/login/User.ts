@@ -3,11 +3,16 @@
  */
 export class User{
 
-  id: String;
+  id: string;
   username: string;
   password: string;
   permissions: string [] ;
-  constructor(){}
+  constructor( id, username,password,permissions){
+    this.id=id;
+    this.username=username;
+    this.password=password;
+    this.permissions=permissions;
+  }
   toString(){
     return "User {'username':"+this.username+" 'password':"+this.password+" id:"+this.id+" }";
   }
