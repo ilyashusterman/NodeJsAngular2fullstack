@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   password: string;
   permissions: string [] ;
   user= new User(this.id, this.username,this.password, this.permissions);
+  //user = new User();
   debugMode : boolean = false;
 
 

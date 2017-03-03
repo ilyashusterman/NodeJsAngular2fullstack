@@ -13,6 +13,7 @@ export class User{
     this.password=password;
     this.permissions=permissions;
   }
+ // constructor(){}
   toString(){
     return "User {'username':"+this.username+" 'password':"+this.password+" id:"+this.id+" }";
   }

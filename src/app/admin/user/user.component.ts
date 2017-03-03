@@ -24,4 +24,6 @@ export class UserComponent implements OnInit {
       .getUsers()
       .then(users => this.users = users);
   }
+
+
 }

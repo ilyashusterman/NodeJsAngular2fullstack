@@ -27,7 +27,8 @@ export class UserService {
     let res = response.json();
     let users: User[] = [];
     for (let i = 0; i < res.length; i++) {
-      users.push(new User(res[i].id, res[i].username, res[i].password,res[i].permissions));
+      users.push(new User(res[i].id, res[i].username,
+        res[i].password,res[i].permissions));
     }
     return users;
   };
