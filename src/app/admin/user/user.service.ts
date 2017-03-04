@@ -10,6 +10,7 @@ import {Observable} from "rxjs/Observable"
 @Injectable()
 export class UserService {
   private usersUrl = '/users';  // URL to web api
+  private userUrl='/user'
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
@@ -55,5 +56,17 @@ export class UserService {
       .toPromise()
       .then(() => user)
       .catch(this.handleError);
+  }
+
+
+  deleteUser(id: number){
+    let headers = new Headers();
+    //headers.append('Content-Type', 'application/json');
+    let url = `${this.userUrl}/${id}`;
+    return this.http
+      .delete(url)
+      .toPromise()
+      .catch(this.handleError);
+
   }
 }

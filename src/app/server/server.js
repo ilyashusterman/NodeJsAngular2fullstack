@@ -52,7 +52,7 @@ function checkAdmin(permissions){
 
 
 
-  // app.use(filter); // Here you add your filter to the app.
+   app.use(filter); // Here you add your filter to the app.
 
 
 var mongoose = require('mongoose');
@@ -188,6 +188,7 @@ db.once('open', function() {
     // delete by id
     app.delete('/user/:id', function(req, res) {
         User.findOneAndRemove({_id: req.params.id}, function(err) {
+          console.log(req.params+' '+req.body);
             if(err) return console.error(err);
             res.sendStatus(200);
         });

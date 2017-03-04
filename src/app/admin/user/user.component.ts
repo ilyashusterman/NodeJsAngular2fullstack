@@ -24,7 +24,8 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(id: number, event:any){
-    // event.stopPropagation();
+     event.stopPropagation();
+    this.userService.deleteUser(id);
     console.log("delete User: "+ id);
 
   }
