@@ -16,7 +16,6 @@ export class UserService {
   constructor(private http: Http) { }
 
   public getUsers(): Promise<User[]> {
-    //TODO fix here ! to get the right data
     return this.http.get(this.usersUrl)
       .toPromise()
       .then(this.extractUsers)
@@ -28,7 +27,7 @@ export class UserService {
     let res = response.json();
     let users: User[] = [];
     for (let i = 0; i < res.length; i++) {
-      users.push(new User(res[i]._id, res[i].username,
+      users.push(new User(res[i]._id,res[i].name, res[i].username,
         res[i].password,res[i].permissions));
     }
     return users;

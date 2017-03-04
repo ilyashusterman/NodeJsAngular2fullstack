@@ -29,10 +29,11 @@ export class LoginComponent implements OnInit {
 
   //////CONSRACTOR ?!
   id: string;
+  name:string;
   username: string;
   password: string;
   permissions: string [] ;
-  user= new User(this.id, this.username,this.password, this.permissions);
+  user= new User(this.id,this.name, this.username,this.password, this.permissions);
   //user = new User();
   debugMode : boolean = false;
 

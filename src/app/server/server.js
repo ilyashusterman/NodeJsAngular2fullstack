@@ -58,7 +58,7 @@ function checkAdmin(permissions){
 
 
 
-   app.use(filter); // Here you add your filter to the app.
+   // app.use(filter); // Here you add your filter to the app.
 
 
 var mongoose = require('mongoose');
