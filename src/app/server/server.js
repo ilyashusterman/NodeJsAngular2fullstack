@@ -34,6 +34,8 @@ var filter = function(req, res, next) {
     req.url === '/login' || req.url === '/logout')) return next();
   // Perform your validations.
   var user = req.session.user;
+  // console.log(req.session.user);
+  console.log(user.permissions);
   if(user&& user.permissions && checkAdmin(user.permissions)){
     console.log("User has permission!");
     return next();
@@ -44,10 +46,14 @@ var filter = function(req, res, next) {
 };
 
 function checkAdmin(permissions){
-  for(var permission in permissions){
-    if(permission === 'admin'){return true ;}
+  var isAdmin=false;
+  for(var i=0;i<permissions.length;i++){
+ // for(var permission in permissions){
+    console.log(permissions[i]);
+    if(permissions[i] === 'admin'){isAdmin=true ;}
   }
-  return false;
+  console.log('isAdmin='+isAdmin);
+  return isAdmin;
 }
 
 
@@ -188,9 +194,8 @@ db.once('open', function() {
     // delete by id
     app.delete('/user/:id', function(req, res) {
         User.findOneAndRemove({_id: req.params.id}, function(err) {
-          console.log(req.params+' '+req.body);
             if(err) return console.error(err);
-            res.sendStatus(200);
+          res.status(200).json("deleted user successfully!");
         });
     });
 
