@@ -75,7 +75,8 @@ db.once('open', function() {
     // select all
     app.get('/users', function(req, res) {
         User.find({}, function(err, docs) {
-            if(err) return console.error(err);
+            if(err) console.error(err);
+            //res,status(500).send()}
             res.json(docs);
         });
     });

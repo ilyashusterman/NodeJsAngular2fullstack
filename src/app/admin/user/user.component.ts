@@ -11,12 +11,10 @@ export class UserComponent implements OnInit {
 
   users : User[] ;
 
-
   constructor(private userService : UserService) { }
 
   ngOnInit() {
     this.getUsers();
-  console.log('users='+this.users);
   }
 
   getUsers(): void {
@@ -24,6 +22,17 @@ export class UserComponent implements OnInit {
       .getUsers()
       .then(users => this.users = users);
   }
+
+  deleteUser(id: number, event:any){
+    // event.stopPropagation();
+    console.log("delete User: "+ id);
+
+  }
+  editUser(id: number, event:any){
+  // event.stopPropagation();
+  console.log("edit User: "+ id);
+
+}
 
 
 }

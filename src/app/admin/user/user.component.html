@@ -11,74 +11,49 @@
       </tr>
       </thead>
     </table>
-  </div>
+  </div><!--//tbl-header-->
   <div class="tbl-content">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
-      <tr *ngFor="let user of users" >
-        <!--<td>id {{user.id}}</td>-->
-        <td>{{user.username}}</td>
-        <td>{{user.password}}</td>
-        <td class="checkbox">
-          <tr>
-        <td><label><input type="checkbox" name="vehicle" value="Admin" checked="checked">{{user.permissions[0]}}</label></td>
-            <td><label><input type="checkbox" name="vehicle" value="Qa" checked="checked">{{user.permissions[1]}}</label><br>
-            </td>
-          </tr>
-          <tr>
-            <td><label><input type="checkbox" name="vehicle" value="Transcript" checked="checked">{{user.permissions[2]}}</label>
-            </td>
-            <td><label><input type="checkbox" name="vehicle" value="Statistic" checked="checked">{{user.permissions[3]}}</label>
-            </td>
-          </tr>
-        </td>
-        <td>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Edit</button>
-              <div class="modal fade bs-example-modal-lg" tabindex="-1" role="alert" aria-labelledby="myLargeModalLabel">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-
-                    <div class="modal-body">
-
-                      <h2>Edit</h2>
-                      <button class="btn btn-default" >Delete</button>//(click)="editProduct(product)"
-
-                    </div>
+        <tr *ngFor="let user of users" >
+          <td>{{user.username }} userID={{user.id}}</td>
+          <td>{{user.password}}</td>
+          <td class="checkbox">
+            <tr>
+            <td><label><input type="checkbox" name="vehicle" value="Admin" checked="checked">{{user.permissions[0]}}</label></td>
+              <td><label><input type="checkbox" name="vehicle" value="Qa" checked="checked">{{user.permissions[1]}}</label><br></td>
+            </tr>
+            <tr>
+              <td><label><input type="checkbox" name="vehicle" value="Transcript" checked="checked">{{user.permissions[2]}}</label></td>
+              <td><label><input type="checkbox" name="vehicle" value="Statistic" checked="checked">{{user.permissions[3]}}</label></td>
+            </tr>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#edit' + user.id">Edit</button>
+            <div [attr.id]="'edit'+user.id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <h2>Edit</h2>
+                    <button class="btn btn-default"  (click)="editUser(user.id, $event)" data-dismiss="modal">Edit</button>
                   </div>
                 </div>
+              </div>
             </div>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Delete</button>
-              <div class="modal fade bs-example-modal-lg" tabindex="-1" role="alert" aria-labelledby="myLargeModalLabel">
+            <button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#delete' + user.id" >Delete</button>
+              <div [attr.id]="'delete'+user.id" class="modal fade" tabindex="-1" role="alert" aria-labelledby="myLargeModalLabel">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
-
                     <div class="modal-body">
-                      <h2>Are you sure want to remove</h2>
-                      <button class="btn btn-default" >Delete</button>//(click)="deleteProduct(product)"
+                      <h2>Are you sure want to remove?</h2>
+                      <button class="btn btn-default" (click)="deleteUser(user.id, $event)" data-dismiss="modal">Delete</button>
                     </div>
                   </div>
                 </div>
               </div>
-        </td>
-      </tr>
-
-      <!--<tr>-->
-        <!--<td>Moshe</td>-->
-        <!--<td>Qa@gmail.com</td>-->
-        <!--<td>1922234</td>-->
-        <!--<td></td>-->
-        <!--<td></td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-        <!--<td>Nisim</td>-->
-        <!--<td>transcripts@gmail.com</td>-->
-        <!--<td>654321</td>-->
-        <!--<td></td>-->
-        <!--<td></td>-->
-      <!--</tr>-->
-
+          </td>
+        </tr>
       </tbody>
     </table>
-  </div>
-</div>
-
+  </div><!--//tbl-content-->
+</div><!--container-->
