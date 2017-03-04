@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../login/User";
 import {UserService} from "./user.service";
 
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -10,7 +11,7 @@ import {UserService} from "./user.service";
 export class UserComponent implements OnInit {
 
   users : User[] ;
-
+  user : User;
   constructor(private userService : UserService) { }
 
   ngOnInit() {
@@ -24,14 +25,19 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(id: number, event:any){
-     event.stopPropagation();
-    this.userService.deleteUser(id);
+     //event.stopPropagation();
+    this.userService.deleteUser(id).then(
+      //TODO modal deleted successfully
+    );
     console.log("delete User: "+ id);
 
   }
-  editUser(id: number, event:any){
-  // event.stopPropagation();
-  console.log("edit User: "+ id);
+  editUser(user: User, event:any){
+    //event.stopPropagation();
+    this.userService.editUser(user).then(
+
+    );
+  console.log("edit User: "+ user);
 
 }
 

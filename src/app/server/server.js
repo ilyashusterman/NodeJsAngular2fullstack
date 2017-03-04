@@ -186,6 +186,7 @@ db.once('open', function() {
     // update by id
     app.put('/user/:id', function(req, res) {
         User.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
+          //console.log('req.body='+new User(req.body));
             if(err) return console.error(err);
             res.sendStatus(200);
         })

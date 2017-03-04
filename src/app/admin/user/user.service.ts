@@ -69,4 +69,14 @@ export class UserService {
       .catch(this.handleError);
 
   }
+
+  editUser(user: User) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let url = `${this.userUrl}/${user.id}`;
+    return this.http
+      .put(url,user)
+      .toPromise()
+      .catch(this.handleError);
+  }
 }
