@@ -29,6 +29,7 @@ export class UserComponent implements OnInit {
     this.userService.deleteUser(id).then(
       //TODO modal deleted successfully
     );
+    location.reload();
     console.log("delete User: "+ id);
 
   }
@@ -37,9 +38,10 @@ export class UserComponent implements OnInit {
     this.userService.editUser(user).then(
 
     );
-  console.log("edit User: "+ user);
+    location.reload();
+    console.log("edit User: "+ user);
 
-}
+  }
 
 
 }

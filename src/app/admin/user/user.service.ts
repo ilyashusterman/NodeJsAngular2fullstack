@@ -10,7 +10,7 @@ import {Observable} from "rxjs/Observable"
 @Injectable()
 export class UserService {
   private usersUrl = '/users';  // URL to web api
-  private userUrl='/user'
+  private userUrl='/user';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }

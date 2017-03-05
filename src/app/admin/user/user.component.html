@@ -16,17 +16,17 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr *ngFor="let user of users" >
-          <td>name:{{user.name}}</td>
+          <td>{{user.name}}</td>
           <td>{{user.username }}</td>
           <td>{{user.password}}</td>
           <td class="checkbox">
             <tr>
-            <td><label><input type="checkbox" name="vehicle" value="Admin" checked="checked">{{user.permissions[0]}}</label></td>
-              <td><label><input type="checkbox" name="vehicle" value="Qa" checked="checked">{{user.permissions[1]}}</label><br></td>
+            <td><input type="checkbox" disabled name="vehicle" value="Admin" checked="checked">{{user.permissions[0]}}</td>
+              <td><input type="checkbox" disabled name="vehicle" value="Qa" checked="checked">{{user.permissions[1]}}<br></td>
             </tr>
             <tr>
-              <td><label><input type="checkbox" name="vehicle" value="Transcript" checked="checked">{{user.permissions[2]}}</label></td>
-              <td><label><input type="checkbox" name="vehicle" value="Statistic" checked="checked">{{user.permissions[3]}}</label></td>
+              <td><input type="checkbox" disabled name="vehicle" value="Transcript" checked="checked">{{user.permissions[2]}}</td>
+              <td><input type="checkbox" disabled name="vehicle" value="Statistic" checked="checked">{{user.permissions[3]}}</td>
             </tr>
           </td>
           <td>
@@ -35,9 +35,38 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-body">
-                    <h2>Edit</h2>
-                    <input type="text" />
-                    <button class="btn btn-default"  (click)="editUser(user, $event)" data-dismiss="modal">Edit</button>
+                    <form ><!--(ngSubmit)="sumbitForm($event,user)"  #InfoForm="ngForm"-->
+                      <div class="form-group">
+                        <h2>Edit: {{user.name}} </h2>
+                        <div class="col-xs-2">
+                          <label for="userName">Name</label>
+                          <input type="text" [value]="user.name" class="form-control" id="userName">
+                        </div>
+                        <div class="col-xs-2">
+                          <label for="userEmail">Email address</label>
+                          <input type="email"  [value]="user.username" class="form-control" id="userEmail">
+                        </div>
+                        <div class="col-xs-2">
+                          <label for="userPassword">Password</label>
+                          <input type="text"  [value]="user.password" class="form-control" id="userPassword">
+                        </div>
+                        <div class="col-xs-2">
+                          <br>
+                          <label><input type="checkbox" name="vehicle" value="Admin" checked="checked"> Admin</label>
+                          <br>
+                          <label><input type="checkbox" name="vehicle" value="Qa" checked="checked"> Qa</label>
+                        </div>
+                        <div class="col-xs-2">
+                          <br>
+                          <label><input type="checkbox" name="vehicle" value="Transcript" checked="checked"> Transcript</label>
+                          <br>
+                          <label><input type="checkbox" name="vehicle" value="Statistic" checked="checked"> Statistic</label>
+                        </div>
+                        <div class="col-xs-2 btn-user">
+                          <button class="btn btn-success btn-lg" type="button" (click)="editUser(user, $event)" data-dismiss="modal">Edit</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -47,8 +76,10 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-body">
-                      <h2>Are you sure want to remove{{user.name}}?</h2>
-                      <button class="btn btn-default" (click)="deleteUser(user.id, $event)" data-dismiss="modal">Delete</button>
+                      <h2>Are you sure want to remove {{user.name}}?</h2>
+                      <div class="col-xs-2 btn-user">
+                        <button class="btn btn-danger btn-lg" type="button" (click)="deleteUser(user.id, $event)" data-dismiss="modal">Delete</button>
+                      </div>
                     </div>
                   </div>
                 </div>
