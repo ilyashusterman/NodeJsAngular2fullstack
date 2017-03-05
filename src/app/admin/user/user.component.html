@@ -20,13 +20,13 @@
           <td>{{user.username }}</td>
           <td>{{user.password}}</td>
           <td class="checkbox">
-            <tr>
-            <td><input type="checkbox" disabled name="vehicle" value="Admin" checked="checked">{{user.permissions[0]}}</td>
-              <td><input type="checkbox" disabled name="vehicle" value="Qa" checked="checked">{{user.permissions[1]}}<br></td>
+            <tr >
+            <td><input type="checkbox" disabled name="vehicle" value="Admin" [checked]="flagAdmin">Admin</td>
+              <td><input type="checkbox" disabled name="vehicle" value="Qa" [checked]="flagQa">Qa<br></td>
             </tr>
             <tr>
-              <td><input type="checkbox" disabled name="vehicle" value="Transcript" checked="checked">{{user.permissions[2]}}</td>
-              <td><input type="checkbox" disabled name="vehicle" value="Statistic" checked="checked">{{user.permissions[3]}}</td>
+              <td><input type="checkbox" disabled name="vehicle" value="Transcript" [checked]="flagScripts" >Transcript</td>
+              <td><input type="checkbox" disabled name="vehicle" value="Statistic" [checked]="flagStatistic">Statistic</td><!--{{user.permissions[3]}}-->
             </tr>
           </td>
           <td>
@@ -35,7 +35,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-body">
-                    <form ><!--(ngSubmit)="sumbitForm($event,user)"  #InfoForm="ngForm"-->
+                    <form>
                       <div class="form-group">
                         <h2>Edit: {{user.name}} </h2>
                         <div class="col-xs-2">
@@ -63,7 +63,7 @@
                           <label><input type="checkbox" name="vehicle" value="Statistic" checked="checked"> Statistic</label>
                         </div>
                         <div class="col-xs-2 btn-user">
-                          <button class="btn btn-success btn-lg" type="button" (click)="editUser(user, $event)" data-dismiss="modal">Edit</button>
+                          <button class="btn btn-success btn-lg" type="submit" (click)="editUser(user, $event)" data-dismiss="modal">Edit</button>
                         </div>
                       </div>
                     </form>

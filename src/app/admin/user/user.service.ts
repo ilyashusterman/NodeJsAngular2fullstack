@@ -49,11 +49,20 @@ export class UserService {
   }
 
   update(user: User): Promise<User> {
-    const url = `${this.usersUrl}/${user.id}`;
+    // const url = `${this.userUrl}/${user.id}`;
     return this.http
-      .put(url, JSON.stringify(user), {headers: this.headers})
+      .put(this.userUrl +"/"+ user.id,user)
       .toPromise()
       .then(() => user)
+      .catch(this.handleError);
+  }
+  editUser(user: User) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let url = `${this.userUrl}/${user.id}`;
+    return this.http
+      .put(url,user)
+      .toPromise()
       .catch(this.handleError);
   }
 
@@ -69,13 +78,5 @@ export class UserService {
 
   }
 
-  editUser(user: User) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let url = `${this.userUrl}/${user.id}`;
-    return this.http
-      .put(url,user)
-      .toPromise()
-      .catch(this.handleError);
-  }
+
 }

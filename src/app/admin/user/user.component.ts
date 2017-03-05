@@ -12,6 +12,11 @@ export class UserComponent implements OnInit {
 
   users : User[] ;
   user : User;
+
+  flagAdmin:boolean = false;
+  flagQa:boolean = false;
+  flagScripts:boolean = false;
+  flagStatistic:boolean = false;
   constructor(private userService : UserService) { }
 
   ngOnInit() {
@@ -27,7 +32,6 @@ export class UserComponent implements OnInit {
   deleteUser(id: number, event:any){
      //event.stopPropagation();
     this.userService.deleteUser(id).then(
-      //TODO modal deleted successfully
     );
     location.reload();
     console.log("delete User: "+ id);
@@ -35,13 +39,19 @@ export class UserComponent implements OnInit {
   }
   editUser(user: User, event:any){
     //event.stopPropagation();
-    this.userService.editUser(user).then(
-
-    );
-    location.reload();
+    this.userService.update(user).then();
+    // location.reload();
     console.log("edit User: "+ user);
 
   }
 
 
+  private getflags() {
+    for(let i=0;i<this.user.permissions.length;i++){
+      if(this.user.permissions[i]==="admin")this.flagAdmin=true;
+      else if(this.user.permissions[i]==="qa")this.flagQa=true;
+      else if(this.user.permissions[i]==="statistic")this.flagStatistic=true;
+      else if(this.user.permissions[i]==="scripts")this.flagScripts=true;
+    }
+  }
 }
