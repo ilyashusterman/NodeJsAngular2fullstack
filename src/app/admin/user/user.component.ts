@@ -21,6 +21,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+    this.getflags();
   }
 
   getUsers(): void {
@@ -39,7 +40,7 @@ export class UserComponent implements OnInit {
   }
   editUser(user: User, event:any){
     //event.stopPropagation();
-    this.userService.update(user).then();
+    this.userService.editUser(user).then();
     // location.reload();
     console.log("edit User: "+ user);
 

@@ -33,6 +33,22 @@ export class UserService {
     return users;
   };
 
+  public getProduct(id: string): Promise<User> {
+    let product = this.http.get(this.userUrl + "/" + id)
+      .toPromise()
+      .then(this.extractProduct)
+      .catch(this.handleError);
+
+    return product;
+  }
+  private extractProduct(response: Response) {
+    let res = response.json();
+    let user = new User(res.id, res.name, res.username,res.password,res.permissions);
+    return user;
+  }
+
+
+
   private handleError(error: any): any{
     let message = "";
 
