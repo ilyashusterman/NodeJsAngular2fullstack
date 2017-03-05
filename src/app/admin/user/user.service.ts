@@ -64,14 +64,17 @@ export class UserService {
     return Observable.throw(message);
   }
 
-  update(user: User): Promise<User> {
-    // const url = `${this.userUrl}/${user.id}`;
-    return this.http
-      .put(this.userUrl +"/"+ user.id,user)
+  public updateUser(user: User) {
+    return this.http.put(this.userUrl + "/" + user.id, user)
       .toPromise()
-      .then(() => user)
       .catch(this.handleError);
   }
+  public addUser(user: User) {
+    return this.http.post(this.usersUrl, user)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
   editUser(user: User) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

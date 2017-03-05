@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../login/User";
 import {UserService} from "./user.service";
 
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -10,24 +9,23 @@ import {UserService} from "./user.service";
 })
 export class UserComponent implements OnInit {
 
-  users : User[] ;
+  users : User[];
   user : User;
 
-  flagAdmin:boolean = false;
-  flagQa:boolean = false;
-  flagScripts:boolean = false;
-  flagStatistic:boolean = false;
   constructor(private userService : UserService) { }
 
   ngOnInit() {
     this.getUsers();
-    this.getflags();
   }
 
   getUsers(): void {
     this.userService
       .getUsers()
       .then(users => this.users = users);
+  }
+
+  getUserPermission(permissions : string [], auth :string): boolean{
+    return permissions.indexOf(auth) > -1;
   }
 
   deleteUser(id: number, event:any){
@@ -46,13 +44,4 @@ export class UserComponent implements OnInit {
 
   }
 
-
-  private getflags() {
-    for(let i=0;i<this.user.permissions.length;i++){
-      if(this.user.permissions[i]==="admin")this.flagAdmin=true;
-      else if(this.user.permissions[i]==="qa")this.flagQa=true;
-      else if(this.user.permissions[i]==="statistic")this.flagStatistic=true;
-      else if(this.user.permissions[i]==="scripts")this.flagScripts=true;
-    }
-  }
 }

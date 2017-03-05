@@ -12,4 +12,7 @@ export class QaComponent implements OnInit {
   ngOnInit() {
   }
 
+  setIsChecked(){
+    return true;
+  }
 }

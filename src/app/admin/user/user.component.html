@@ -21,12 +21,12 @@
           <td>{{user.password}}</td>
           <td class="checkbox">
             <tr>
-            <td><input type="checkbox" disabled name="vehicle" value="Admin" [checked]="flagAdmin">Admin</td>
-              <td><input type="checkbox" disabled name="vehicle" value="Qa" [checked]="flagQa">Qa<br></td>
+            <td><input type="checkbox" disabled name="vehicle" value="Admin" [checked]="getUserPermission(user.permissions,'admin')">Admin</td>
+              <td><input type="checkbox" disabled name="vehicle" value="Qa" [checked]="getUserPermission(user.permissions,'qa')">Qa<br></td>
             </tr>
             <tr>
-              <td><input type="checkbox" disabled name="vehicle" value="Transcript" [checked]="flagScripts" >Transcript</td>
-              <td><input type="checkbox" disabled name="vehicle" value="Statistic" [checked]="flagStatistic">Statistic</td><!--{{user.permissions[3]}}-->
+              <td><input type="checkbox" disabled name="vehicle" value="Transcript" [checked]="getUserPermission(user.permissions,'scripts')" >Transcript</td>
+              <td><input type="checkbox" disabled name="vehicle" value="Statistic" [checked]="getUserPermission(user.permissions,'statistic')">Statistic</td><!--{{user.permissions[3]}}-->
             </tr>
           </td>
           <td>
@@ -48,19 +48,19 @@
                         </div>
                         <div class="col-xs-2">
                           <label for="userPassword">Password</label>
-                          <input type="text"  [value]="user.password" class="form-control" id="userPassword">
+                          <input type="text" [value]="user.password" class="form-control" id="userPassword">
                         </div>
                         <div class="col-xs-2">
                           <br>
-                          <label><input type="checkbox" name="vehicle" value="Admin" checked="checked"> Admin</label>
+                          <label><input type="checkbox" value="Admin" [checked]="getUserPermission(user.permissions,'admin')"> Admin</label>
                           <br>
-                          <label><input type="checkbox" name="vehicle" value="Qa" checked="checked"> Qa</label>
+                          <label><input type="checkbox" value="Qa" [checked]="getUserPermission(user.permissions,'qa')"> Qa</label>
                         </div>
                         <div class="col-xs-2">
                           <br>
-                          <label><input type="checkbox" name="vehicle" value="Transcript" checked="checked"> Transcript</label>
+                          <label><input type="checkbox" value="Transcript" [checked]="getUserPermission(user.permissions,'scripts')"> Transcript</label>
                           <br>
-                          <label><input type="checkbox" name="vehicle" value="Statistic" checked="checked"> Statistic</label>
+                          <label><input type="checkbox" value="Statistic" [checked]="getUserPermission(user.permissions,'statistic')"> Statistic</label>
                         </div>
                         <div class="col-xs-2 btn-user">
                           <button class="btn btn-success btn-lg" type="submit" (click)="editUser(user, $event)" data-dismiss="modal">Edit</button>
