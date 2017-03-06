@@ -24,28 +24,26 @@ export class UserComponent implements OnInit {
       .then(users => this.users = users);
   }
 
+  setUserPermission(user: User, permission: string, event:any){
+    if(!this.getUserPermission(user.permissions, permission)){
+      user.permissions.push(permission);
+    }
+    console.log('user.permission='+user.permissions);
+    this.editUser(user, event);
+  }
+
   getUserPermission(permissions : string [], auth :string): boolean{
     return permissions.indexOf(auth) > -1;
   }
 
-  // setUserPermission(permissions:string [], auth:string):boolean{
-  //   if(permissions.indexOf(auth)>-1)
-  //   return
-  // }
   deleteUser(id: number, event:any){
-     //event.stopPropagation();
     this.userService.deleteUser(id).then(
     );
     location.reload();
-    console.log("delete User: "+ id);
-
   }
+
   editUser(user: User, event:any){
-    //event.stopPropagation();
-    console.log("Before edit user "+user);
     this.userService.updateUser(user).then();
-    // location.reload();
-    console.log("After edit user "+ user);
   }
 
 

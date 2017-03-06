@@ -9,9 +9,8 @@ import {Observable} from "rxjs/Observable"
 
 @Injectable()
 export class UserService {
-  private usersUrl = '/users';  // URL to web api
+  private usersUrl = '/users';
   private userUrl='/user';
-  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
@@ -19,7 +18,6 @@ export class UserService {
     return this.http.get(this.usersUrl)
       .toPromise()
       .then(this.extractUsers)
-      // .then(response => response.json().data as User[])
       .catch(this.handleError);
   }
 
@@ -38,16 +36,14 @@ export class UserService {
       .toPromise()
       .then(this.extractUser)
       .catch(this.handleError);
-
     return user;
   }
+
   private extractUser(response: Response) {
     let res = response.json();
     let user = new User(res.id, res.name, res.username,res.password,res.permissions);
     return user;
   }
-
-
 
   private handleError(error: any): any{
     let message = "";
@@ -58,9 +54,6 @@ export class UserService {
     } else {
       message = error.message ? error.message : error.toString();
     }
-
-    console.log("!!!!!!ERROR!!!!!!!!"+message);
-
     return Observable.throw(message);
   }
 
@@ -75,26 +68,12 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  // editUser(user: User) {
-  //   let headers = new Headers();
-  //   headers.append('Content-Type', 'application/json');
-  //   let url = `${this.userUrl}/${user.id}`;
-  //   return this.http
-  //     .put(url,user)
-  //     .toPromise()
-  //     .catch(this.handleError);
-  // }
-
-
   deleteUser(id: number){
-    let headers = new Headers();
-    //headers.append('Content-Type', 'application/json');
     let url = `${this.userUrl}/${id}`;
     return this.http
       .delete(url)
       .toPromise()
       .catch(this.handleError);
-
   }
 
 

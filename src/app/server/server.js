@@ -56,9 +56,7 @@ function checkAdmin(permissions){
   return isAdmin;
 }
 
-
-
-   // app.use(filter); // Here you add your filter to the app.
+app.use(filter); // Here you add your filter to the app.
 
 
 var mongoose = require('mongoose');
@@ -186,7 +184,6 @@ db.once('open', function() {
     // update by id
     app.put('/user/:id', function(req, res) {
         User.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
-          //console.log('req.body='+new User(req.body));
             if(err) return console.error(err);
             res.sendStatus(200);
         })

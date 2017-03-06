@@ -21,7 +21,7 @@
           <td>{{user.password}}</td>
           <td class="checkbox">
             <tr>
-            <td><input type="checkbox" disabled name="vehicle" value="Admin" [checked]="getUserPermission(user.permissions,'admin')">Admin</td>
+            <td><input type="checkbox" disabled name="vehicle" value="Admin" (click)="setUserPermission(user, 'admin', $event)" [checked]="getUserPermission(user.permissions,'admin')">Admin</td>
               <td><input type="checkbox" disabled name="vehicle" value="Qa" [checked]="getUserPermission(user.permissions,'qa')">Qa<br></td>
             </tr>
             <tr>
