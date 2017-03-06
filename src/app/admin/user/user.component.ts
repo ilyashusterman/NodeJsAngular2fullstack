@@ -48,6 +48,9 @@ export class UserComponent implements OnInit {
   editUser(user: User, event:any){
     this.userService.updateUser(user).then();
   }
+  createUser(user: User, event:any){
+    this.userService.createUser(user).then();
+  }
 
 
 }

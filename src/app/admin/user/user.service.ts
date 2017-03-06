@@ -62,11 +62,6 @@ export class UserService {
       .toPromise()
       .catch(this.handleError);
   }
-  public addUser(user: User) {
-    return this.http.post(this.usersUrl, user)
-      .toPromise()
-      .catch(this.handleError);
-  }
 
   deleteUser(id: number){
     let url = `${this.userUrl}/${id}`;
@@ -77,4 +72,9 @@ export class UserService {
   }
 
 
+  createUser(user: User) {
+    return this.http.post(this.usersUrl, user)
+      .toPromise()
+      .catch(this.handleError);
+  }
 }
