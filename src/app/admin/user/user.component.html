@@ -21,12 +21,12 @@
           <td>{{user.password}}</td>
           <td class="checkbox">
             <tr>
-            <td><input type="checkbox" disabled name="vehicle" value="Admin" (click)="setUserPermission(user, 'admin', $event)" [checked]="getUserPermission(user.permissions,'admin')">Admin</td>
-              <td><input type="checkbox" disabled name="vehicle" value="Qa" [checked]="getUserPermission(user.permissions,'qa')">Qa<br></td>
+            <td><input type="checkbox" (click)="setUserPermission(user, 'admin', $event)" name="vehicle" value="Admin"  [checked]="getUserPermission(user.permissions,'admin')">Admin</td>
+              <td><input type="checkbox"  (click)="setUserPermission(user, 'qa', $event)" name="vehicle" value="Qa" [checked]="getUserPermission(user.permissions,'qa')">Qa<br></td>
             </tr>
             <tr>
-              <td><input type="checkbox" disabled name="vehicle" value="Transcript" [checked]="getUserPermission(user.permissions,'scripts')" >Transcript</td>
-              <td><input type="checkbox" disabled name="vehicle" value="Statistic" [checked]="getUserPermission(user.permissions,'statistic')">Statistic</td><!--{{user.permissions[3]}}-->
+              <td><input type="checkbox" (click)="setUserPermission(user, 'scripts', $event)" name="vehicle" value="Transcript" [checked]="getUserPermission(user.permissions,'scripts')" >Transcript</td>
+              <td><input type="checkbox"  name="vehicle" value="Statistic" (click)="setUserPermission(user, 'statistic', $event)" [checked]="getUserPermission(user.permissions,'statistic')">Statistic</td><!--{{user.permissions[3]}}-->
             </tr>
           </td>
           <td>
