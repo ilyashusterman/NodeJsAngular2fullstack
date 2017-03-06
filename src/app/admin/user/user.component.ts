@@ -38,10 +38,11 @@ export class UserComponent implements OnInit {
   }
   editUser(user: User, event:any){
     //event.stopPropagation();
-    this.userService.editUser(user).then();
+    console.log("Before edit user "+this.user);
+    this.userService.updateUser(user).then();
     // location.reload();
-    console.log("edit User: "+ user);
-
+    console.log("After edit user "+ this.user);
   }
+
 
 }

@@ -33,15 +33,15 @@ export class UserService {
     return users;
   };
 
-  public getProduct(id: string): Promise<User> {
-    let product = this.http.get(this.userUrl + "/" + id)
+  public getUser(id: string): Promise<User> {
+    let user = this.http.get(this.userUrl + "/" + id)
       .toPromise()
-      .then(this.extractProduct)
+      .then(this.extractUser)
       .catch(this.handleError);
 
-    return product;
+    return user;
   }
-  private extractProduct(response: Response) {
+  private extractUser(response: Response) {
     let res = response.json();
     let user = new User(res.id, res.name, res.username,res.password,res.permissions);
     return user;
@@ -75,15 +75,15 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  editUser(user: User) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let url = `${this.userUrl}/${user.id}`;
-    return this.http
-      .put(url,user)
-      .toPromise()
-      .catch(this.handleError);
-  }
+  // editUser(user: User) {
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/json');
+  //   let url = `${this.userUrl}/${user.id}`;
+  //   return this.http
+  //     .put(url,user)
+  //     .toPromise()
+  //     .catch(this.handleError);
+  // }
 
 
   deleteUser(id: number){

@@ -9,6 +9,7 @@ import {LoginRoutingModule} from "./login/login-routing.module";
 import { QaComponent } from './qa/qa.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import {HttpModule} from "@angular/http";
+import {UserService} from "./admin/user/user.service";
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {HttpModule} from "@angular/http";
     // AdminComponent,
     // ScriptsComponent
   ],
-  //providers: [ UserService ],
+  providers: [ UserService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
