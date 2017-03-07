@@ -1,5 +1,6 @@
 <div class="container">
   <div class="tbl-header">
+
     <table cellpadding="0" cellspacing="0" border="0">
       <thead>
       <tr>
@@ -8,7 +9,51 @@
         <th>Password</th>
         <th>Permissions</th>
         <th>Actions</th>
+        <th>
+          <button class="addButton" type="button"  data-toggle="modal" [attr.data-target]="'#addUser'" (click)="createNewUser()">Add user !</button>
+          <div [attr.id]="'addUser'" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <div class="col-xs-2">
+                          <label for="addUserName">Name</label>
+                          <input type="text"  class="form-control" id="addUserName"  (input)="user.name=$event.target.value">
+                        </div>
+                        <div class="col-xs-2">
+                          <label for="addUserEmail">Email address</label>
+                          <input type="email"  class="form-control" id="addUserEmail" (input)="user.username=$event.target.value"
+                          email="email" name="email" placeholder="Email" required />
+                        </div>
+                        <div class="col-xs-2">
+                          <label for="addUserPassword">Password</label>
+                          <input type="text" class="form-control" id="addUserPassword"  (input)="user.password=$event.target.value">
+                        </div>
+                        <div class="col-xs-2">
+                          <br>
+                          <label><input type="checkbox" value="Admin" (click)="setUserPermission(user, 'admin', $event)" > Admin</label>
+                          <br>
+                          <label><input type="checkbox" value="Qa" (click)="setUserPermission(user, 'qa', $event)"> Qa</label>
+                        </div>
+                        <div class="col-xs-2">
+                          <br>
+                          <label><input type="checkbox" value="Transcript" (click)="setUserPermission(user, 'scripts', $event)"> Transcript</label>
+                          <br>
+                          <label><input type="checkbox" value="Statistic" (click)="setUserPermission(user, 'statistic', $event)"> Statistic</label>
+                        </div>
+                        <div class="col-xs-2 btn-user">
+                          <button class="btn btn-success btn-lg" type="submit" (click)="createUser(user, $event)" data-dismiss="modal">Add User</button>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
       </tr>
+
       </thead>
     </table>
   </div><!--//tbl-header-->

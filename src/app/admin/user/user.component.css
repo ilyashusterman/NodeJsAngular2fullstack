@@ -25,6 +25,62 @@ table {
   /*padding: 10px;*/
 /*}*/
 
+/*button  */
+.addButton{
+  background:#1AAB8A;
+  color:#fff;
+  position:relative;
+  height:50px;
+  padding:0 1em;
+  /*cursor:pointer;*/
+  transition:800ms ease all;
+  /*outline:none;*/
+  /*color: #1AAB8A;*/
+  -moz-border-radius-topleft: 75px;
+  -moz-border-radius-topright:75px;
+  -moz-border-radius-bottomleft:75px;
+  -moz-border-radius-bottomright:75px;
+  -webkit-border-top-left-radius:75px;
+  -webkit-border-top-right-radius:75px;
+  -webkit-border-bottom-left-radius:75px;
+  -webkit-border-bottom-right-radius:75px;
+  border-top-left-radius:75px;
+  border-top-right-radius:75px;
+  border-bottom-left-radius:75px;
+  border-bottom-right-radius:75px;
+  -moz-box-shadow: 2px 7px 30px #808080;
+  -webkit-box-shadow: 2px 7px 30px #808080;
+  box-shadow: 2px 7px 30px #808080;
+}
+.addButton:hover{
+  background:#fff;
+  color:#0b3c5d;
+
+}
+/*.button:before,button:after{*/
+  /*content:'';*/
+  /*position:absolute;*/
+  /*top:0;*/
+  /*right:0;*/
+  /*!*height:2px;*!*/
+  /*width:0;*/
+  /*background: #1AAB8A;*/
+  /*transition:400ms ease all;*/
+/*}*/
+.addButton:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.addButton:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+/*button*/
+
+
 
 /*modal?*/
 .modal  {
@@ -59,7 +115,7 @@ tr>th {
   padding: 20px 15px;
   text-align: left;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 15px;
   color: #0b3c5d;
   text-transform: uppercase;
 }

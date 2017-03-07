@@ -11,12 +11,16 @@ export class UserComponent implements OnInit {
 
   users : User[];
   user : User;
+  submitted = false;
 
   constructor(private userService : UserService) { }
 
   ngOnInit() {
     this.getUsers();
   }
+
+
+  onSubmit() { this.submitted = true; }
 
   getUsers(): void {
     this.userService
@@ -48,8 +52,15 @@ export class UserComponent implements OnInit {
   editUser(user: User, event:any){
     this.userService.updateUser(user).then();
   }
+
+  createNewUser(){
+    this.user= new User('111111111','name','email','password','');
+    console.log(this.user);
+  }
   createUser(user: User, event:any){
     this.userService.createUser(user).then();
+    location.reload();
+
   }
 
 
