@@ -6,7 +6,6 @@ import {ScriptsComponent} from "../scripts/scripts.component";
 import {DashboardhomeComponent} from "../dashboardhome/dashboardhome.component";
 import {DashboardListComponent} from "../dashboard-list/dashboard-list.component";
 import {AdminGuard} from "../admin/admin-guard.service";
-import {AuthService} from "../auth.service";
 import {ScriptsGuard} from "../scripts/scripts-guard.service";
 import {QaGuard} from "../qa/qa-guard.service";
 import {UserComponent} from "../admin/user/user.component";
@@ -19,7 +18,7 @@ import {QaComponent} from "../qa/qa.component";
 import {StatisticComponent} from "../statistic/statistic.component";
 import {StatisticGuard} from "../statistic/statistic-guard.service";
 import {UserService} from "../admin/user/user.service";
-import {Http} from "@angular/http";
+
 const dashboardRoutes: Routes = [
   {
     path: '',

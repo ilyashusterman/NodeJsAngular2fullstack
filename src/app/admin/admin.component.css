@@ -1,10 +1,18 @@
+nav{
+  background-color: #1d608b;
+}
 .navbar-fixed-top{
   margin-top: 75px;
+}
+
+.navbar-nav>li>a{
+  background-color: #1d608b;
+  transition: background-color .8s;
 }
 .navbar-nav>li>a:hover{
   background-color: #42A948;
 }
-.navbar-nav>li>a:visited{
+.navbar-nav>li>a:active{
   background-color: #42A948;
 }
 .icon-bar{

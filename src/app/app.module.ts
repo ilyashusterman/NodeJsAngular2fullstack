@@ -24,12 +24,6 @@ import {UserService} from "./admin/user/user.service";
     AppComponent,
     LoginComponent,
     NotfoundComponent,
-    // StatisticComponent,
-    // QaComponent
-    // DashboardListComponent,
-    // DashboardhomeComponent,
-    // AdminComponent,
-    // ScriptsComponent
   ],
   providers: [ UserService ],
   bootstrap: [ AppComponent ]
