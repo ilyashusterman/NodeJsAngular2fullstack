@@ -4,8 +4,7 @@ import {Router} from "@angular/router";
 import {User} from './User';
 import axios from 'axios';
 import environment from '../../environments/environment';
-import { Http, Headers, Response } from '@angular/http';
-import {forEach} from "@angular/router/src/utils/collection";
+import { Response } from '@angular/http';
 import {Observable} from "rxjs";
 
 
@@ -26,14 +25,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn:boolean = false;
   errorFlag: boolean = false;
   users : User[];
-
-  //////CONSRACTOR ?!
-  id: string;
-  name:string;
-  username: string;
-  password: string;
-  permissions: string [] ;
-  user= new User(this.id,this.name, this.username,this.password, this.permissions);
+  user= new User("","","","",[]);
   //user = new User();
   debugMode : boolean = false;
 
